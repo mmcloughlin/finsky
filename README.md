@@ -1,0 +1,2 @@
+# finsky
+Google Play API

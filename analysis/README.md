@@ -68,3 +68,29 @@ public Request<?> delivery(String string, int n, byte[] arrby, Integer n2, Integ
     return this.mQueue.add(dfeRequest);
 }
 ```
+
+Response:
+
+```
+payload {
+  deliveryResponse {
+    appDeliveryData {
+      downloadSize: 43789085
+      signature: "BMSpG6ZA78Pvx1S64U0Akho2Ui8"
+      downloadUrl: "https://android.clients.google.com/market/download/Download?packageName=com.facebook.katana&versionCode=11209847&ssl=1&token=AOTCm0SqOMo2UUtgzvqf5ET5NowBb9xuPK1JP5Tq59DD1LLzSE9e35fsPasoOi7sYOBdU8F32ugK8_yelE15er9Q7LYyL40KdtKlDE5RCvmDAE2Wic7W5V3WvwPzvTGgfpLLllnX6F5fRPaBCjOVMFT8p6b7kQ6m3Y7O3D2FLvvMQpLR7F25byLg-yGGhcI_BSbkyYlT6-4yzIqcD37waYBKWxrVCpvF&downloadId=-1748287373119731515"
+      downloadAuthCookie {
+        name: "MarketDA"
+        value: "04273586160470978360"
+      }
+      forwardLocked: false
+      serverInitiated: true
+      gzippedDownloadUrl: "https://android.clients.google.com/market/download/Download?packageName=com.facebook.katana&versionCode=11209847&ssl=1&token=AOTCm0RkmHvburjlSE3voAleZFjnjteHS4-icK9Ct8RMhvfvsHLERZIxN75QAJRMdltFOLTKZMpBKDjzXMOrIE_AuZNMubLiBR3GwflRHR6akCJ6bjOfEHNjRjyVKk7QxY3r5WW_tAMtgYxUNARwvdS9q1d7jTuNM7kU6fZf8woIFMuyE13hTcGkjVmcUqQoIPAxKYem8dP3hdl_-GD40hqqyYaiCSYH&downloadId=-1748287373119731515&gz=1"
+      gzippedDownloadSize: 39609985
+      installLocation: 2
+    }
+  }
+}
+serverMetadata {
+  latencyMillis: 636
+}
+```

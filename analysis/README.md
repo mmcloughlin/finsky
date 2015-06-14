@@ -33,6 +33,18 @@ https://android.clients.google.com/fdfe/delivery
   &ch=ijxLJi1yGs1JpL-X1SExmchvork
 ```
 
+Parameters:
+
+| Param | Required | Meaning |
+|-------|----------|---------|
+| `doc` | Yes      | App ID |
+| `vc`  | Yes      | Version code (from `details` request) |
+| `ot`  | Yes      | Offer type (set to `1`) |
+| `ch`  | No       | Certificate Hash (from `details` request) |
+| `st`  | No       | *Unknown* (some kind of token) |
+| `bvc` | No       | *Unknown* (looks like another version code) |
+| `pf`  | No       | *Unknown* (related to `bvc`, can appear multiple times) |
+
 Java code:
 
 ```java

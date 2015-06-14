@@ -6,6 +6,36 @@ BASE_URI = Uri.parse((String)"https://android.clients.google.com/fdfe/");
 
 Responses can be parsed as `Response.ResponseWrapper` protobuf messages.
 
+## DFE Headers
+
+
+* `X-DFE-Device-Id`
+  Android device ID (16 hex digits).
+    - Required
+* `X-DFE-Enabled-Experiments`
+    - Optional, or can be empty
+* `X-DFE-Unsupported-Experiments`
+    - Optional, or can be empty
+* `X-DFE-Client-Id`
+    - Optional
+    - Example: `am-unknown`, `am-android-google`
+* `X-DFE-Logging-Id`
+    - Optional
+    - Example: `8de37d43065790b`
+* `X-DFE-Request-Params`
+  Manages retry policy. Sets values `timeoutMs` and `retryAttempt`.
+    - Optional
+    - Example: `timeoutMs=2500`
+* `X-DFE-Filter-Level`
+  Related to content filtering.
+    - Optional
+    - Example: `3`
+* `X-DFE-No-Prefetch`
+  Used with the `details` request to prevent prefetching of similar app
+  details.
+    - Example: `true`
+
+
 ## details
 
 Example request:

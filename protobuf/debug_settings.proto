@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package DebugSettings;
+
+option java_outer_classname = "DebugSettings";
+option java_package = "com.google.android.finsky.protos";
+
+
+message DebugSettingsResponse {
+  optional string playCountryOverride = 1;
+  optional string playCountryDebugInfo = 2;
+}
+

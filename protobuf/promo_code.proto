@@ -1,0 +1,55 @@
+syntax = "proto2";
+
+package PromoCode;
+
+option java_outer_classname = "PromoCode";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+import "check_promo_offer.proto";
+import "document_v2.proto";
+import "single_fop_payments_integrator.proto";
+import "acquisition.proto";
+import "billing_address.proto";
+import "challenge_proto.proto";
+
+message UserConfirmationChallenge {
+  optional string title = 1;
+  optional string titleBylineHtml = 2;
+  optional string formattedPrice = 3;
+  optional string priceBylineHtml = 4;
+  optional string buttonLabel = 5;
+  optional Common.Image thumbnailImage = 6;
+  optional string messageHtml = 7;
+  optional string footerHtml = 8;
+}
+
+message RedeemCodeRequest {
+  optional string code = 1;
+  optional bool hasUserConfirmation = 2;
+  optional BillingAddress.Address address = 3;
+  repeated string addressCheckedCheckboxId = 4;
+  optional string token = 5;
+  optional int32 redemptionContext = 6;
+  optional string partnerPayload = 7;
+  optional Common.Docid docid = 8;
+  optional int32 offerType = 9;
+  optional int64 consumptionAppVersionCode = 10;
+  optional bytes paymentsIntegratorClientContextToken = 11;
+}
+
+message RedeemCodeResponse {
+  optional int32 result = 1;
+  optional string token = 2;
+  optional UserConfirmationChallenge userConfirmationChallenge = 3;
+  optional ChallengeProto.AddressChallenge addressChallenge = 4;
+  optional Acquisition.SuccessInfo successInfo = 5;
+  optional string errorMessageHtml = 6;
+  optional CheckPromoOffer.RedeemedPromoOffer redeemedOffer = 7;
+  optional string storedValueInstrumentId = 8;
+  optional Common.Docid consumptionAppDocid = 10;
+  optional DocumentV2.DocV2 doc = 11;
+  optional bytes serverLogsCookie = 12;
+  optional SingleFopPaymentsIntegrator.SingleFopPaymentsIntegratorContext paymentsIntegratorContext = 13;
+}
+

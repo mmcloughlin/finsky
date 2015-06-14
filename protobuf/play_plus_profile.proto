@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package PlayPlusProfile;
+
+option java_outer_classname = "PlayPlusProfile";
+option java_package = "com.google.android.finsky.protos";
+
+import "document.proto";
+
+message PlayPlusProfileResponse {
+  optional Document.PlayDocument userProfile = 1;
+  optional bool isGplusUser = 2;
+}
+

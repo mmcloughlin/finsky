@@ -1,0 +1,50 @@
+syntax = "proto2";
+
+package Acquisition;
+
+option java_outer_classname = "Acquisition";
+option java_package = "com.google.android.finsky.protos";
+
+import "doc_annotations.proto";
+import "document_v2.proto";
+import "library_update_proto.proto";
+import "common.proto";
+
+message SuccessInfo {
+  optional string messageHtml = 1;
+  optional string buttonLabel = 2;
+  optional PostSuccessAction postSuccessAction = 3;
+  optional LibraryUpdateProto.LibraryUpdate libraryUpdate = 4;
+  optional string title = 5;
+  optional string titleBylineHtml = 6;
+  optional Common.Image thumbnailImage = 7;
+}
+
+message OpenDocAction {
+  optional DocumentV2.DocV2 doc = 1;
+}
+
+message PostSuccessAction {
+  optional OpenDocAction openDoc = 1;
+  optional OpenHomeAction openHome = 2;
+  optional InstallAppAction installApp = 3;
+  optional PurchaseFlowAction purchaseFlow = 4;
+  optional OpenContainerDocumentAction openContainer = 5;
+}
+
+message PurchaseFlowAction {
+  optional DocumentV2.DocV2 purchaseDoc = 1;
+  optional int32 purchaseOfferType = 2;
+}
+
+message OpenContainerDocumentAction {
+  optional DocAnnotations.Link link = 1;
+}
+
+message InstallAppAction {
+  optional DocumentV2.DocV2 doc = 1;
+}
+
+message OpenHomeAction {
+}
+

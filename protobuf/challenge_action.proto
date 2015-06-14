@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package ChallengeAction;
+
+option java_outer_classname = "ChallengeAction";
+option java_package = "com.google.android.finsky.protos";
+
+import "challenge_proto.proto";
+
+message ChallengeResponse {
+  optional ChallengeProto.Challenge challenge = 1;
+  optional bool challengePassed = 2;
+}
+

@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package PlusProfile;
+
+option java_outer_classname = "PlusProfile";
+option java_package = "com.google.android.finsky.protos";
+
+import "plus_data.proto";
+import "document_v2.proto";
+
+message PlusProfileResponse {
+  optional PlusData.OBSOLETE_PlusProfile plusProfile = 1;
+  optional DocumentV2.DocV2 partialUserProfile = 2;
+  optional bool isGplusUser = 3;
+}
+

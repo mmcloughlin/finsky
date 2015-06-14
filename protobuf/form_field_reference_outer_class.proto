@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package FormFieldReferenceOuterClass;
+
+option java_outer_classname = "FormFieldReferenceOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common";
+
+
+message FormFieldReference {
+  optional string formId = 1;
+  optional int32 fieldId = 2;
+  optional int32 repeatedFieldIndex = 3;
+}
+

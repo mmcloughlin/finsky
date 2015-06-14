@@ -1,0 +1,30 @@
+syntax = "proto2";
+
+package CustomerFormOuterClass;
+
+option java_outer_classname = "CustomerFormOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.components.customer";
+
+import "legal_message_set_outer_class.proto";
+import "tax_info_form_outer_class.proto";
+import "address_form_outer_class.proto";
+import "instrument_form_outer_class.proto";
+
+message CustomerFormValue {
+  optional InstrumentFormOuterClass.InstrumentFormValue instrument = 1;
+  optional string legalDocData = 3;
+  optional AddressFormOuterClass.AddressFormValue legalAddress = 4;
+  optional string legalCountryCode = 5;
+  optional TaxInfoFormOuterClass.TaxInfoFormValue taxInfo = 6;
+}
+
+message CustomerForm {
+  optional AddressFormOuterClass.AddressForm legalAddressForm = 1;
+  optional InstrumentFormOuterClass.InstrumentForm instrumentForm = 2;
+  optional LegalMessageSetOuterClass.LegalMessageSet legalMessages = 4;
+  optional string id = 5;
+  optional AddressFormOuterClass.CountrySelector legalCountrySelector = 6;
+  repeated TaxInfoFormOuterClass.TaxInfoForm taxInfoForm = 7;
+  optional int32 initialTaxInfoForm = 8;
+}
+

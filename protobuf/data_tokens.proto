@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+package DataTokens;
+
+option java_outer_classname = "DataTokens";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.instrumentmanager";
+
+import "api.proto";
+import "request_context_outer_class.proto";
+
+message CommonToken {
+  optional Api.InstrumentManagerParameters parameters = 1;
+  optional AndroidEnvironmentConfig androidEnvironmentConfig = 2;
+}
+
+message AndroidEnvironmentConfig {
+  optional string serverBasePath = 1;
+  optional string authTokenType = 2;
+  optional string accountName = 3;
+  optional string serverEesBasePath = 4;
+}
+
+message ActionToken {
+  optional Api.InstrumentManagerParameters parameters = 1;
+  optional Api.InitializeResponse initializeResponse = 2;
+}
+
+message ClientToken {
+  optional RequestContextOuterClass.RequestContext requestContext = 1;
+  optional Api.ClientParameters clientParameters = 2;
+}
+

@@ -1,0 +1,104 @@
+syntax = "proto2";
+
+package CsdClient;
+
+option java_outer_classname = "CsdClient";
+option java_package = "com.google.android.vending.verifier.protos";
+
+
+message ClientDownloadRequest {
+  message Resource {
+    optional string url = 1;
+    optional int32 type = 2;
+    optional bytes remoteIp = 3;
+    optional string referrer = 4;
+  }
+
+  message SignatureInfo {
+    repeated CertificateChain certificateChain = 1;
+    optional bool trusted = 2;
+  }
+
+  message CertificateChain {
+    message Element {
+      optional bytes certificate = 1;
+      optional bool parsedSuccessfully = 2;
+      optional bytes subject = 3;
+      optional bytes issuer = 4;
+      optional bytes fingerprint = 5;
+      optional int64 expiryTime = 6;
+      optional int64 startTime = 7;
+    }
+
+    repeated Element element = 1;
+  }
+
+  message ApkInfo {
+    optional string packageName = 1;
+    optional int32 versionCode = 2;
+    repeated FileInfo files = 3;
+    optional bool installedByPlay = 4;
+    optional bool forwardLocked = 5;
+    optional bool inStoppedState = 6;
+    optional bool dontWarnAgain = 7;
+  }
+
+  message FileInfo {
+    optional string name = 1;
+    optional Digests digests = 2;
+    optional int32 verificationErrors = 3;
+  }
+
+  message Digests {
+    optional bytes sha256 = 1;
+    optional bytes sha1 = 2;
+    optional bytes md5 = 3;
+  }
+
+  optional string url = 1;
+  optional Digests digests = 2;
+  optional int64 length = 3;
+  repeated Resource resources = 4;
+  optional SignatureInfo signature = 5;
+  optional bool userInitiated = 6;
+  repeated string clientAsn = 8;
+  optional string fileBasename = 9;
+  optional int32 downloadType = 10;
+  optional string locale = 11;
+  optional ApkInfo apkInfo = 12;
+  optional int64 androidId = 13;
+  repeated string originatingPackages = 15;
+  optional bytes requestId = 16;
+  optional SignatureInfo originatingSignature = 17;
+  repeated string installerPackages = 20;
+  optional SignatureInfo installerSignature = 21;
+}
+
+message ClientDownloadStatsRequest {
+  optional int32 userDecision = 1;
+  optional bytes token = 2;
+  optional bool dontWarnAgain = 3;
+}
+
+message ClientMultiDownloadResponse {
+  repeated ClientDownloadResponse responses = 1;
+}
+
+message ClientDownloadResponse {
+  message MoreInfo {
+    optional string description = 1;
+    optional string url = 2;
+  }
+
+  optional int32 verdict = 1;
+  optional MoreInfo moreInfo = 2;
+  optional bytes token = 3;
+  optional bytes requestId = 4;
+  optional bool uploadApk = 5;
+}
+
+message ClientMultiDownloadRequest {
+  repeated ClientDownloadRequest requests = 1;
+  optional bool userConsented = 2;
+}
+

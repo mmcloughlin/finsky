@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package GroupLicense;
+
+option java_outer_classname = "GroupLicense";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message GroupLicenseInfo {
+  optional int32 licensedOfferType = 1;
+  optional int64 gaiaGroupId = 2;
+  optional Common.GroupLicenseKey groupLicenseKey = 3;
+}
+

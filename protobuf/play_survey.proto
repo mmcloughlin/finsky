@@ -1,0 +1,33 @@
+syntax = "proto2";
+
+package PlaySurvey;
+
+option java_outer_classname = "PlaySurvey";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message SurveyContent {
+  optional string title = 1;
+  optional string question = 2;
+  repeated SurveyAnswer answer = 3;
+}
+
+message Survey {
+  optional string id = 1;
+  optional Prompt prompt = 2;
+  optional SurveyContent content = 3;
+}
+
+message Prompt {
+  optional string promptText = 1;
+  optional string acceptButtonText = 2;
+  optional string rejectButtonText = 3;
+}
+
+message SurveyAnswer {
+  optional string id = 1;
+  optional Common.Image icon = 2;
+  optional string description = 3;
+}
+

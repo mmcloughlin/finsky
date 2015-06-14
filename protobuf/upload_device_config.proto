@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package UploadDeviceConfig;
+
+option java_outer_classname = "UploadDeviceConfig";
+option java_package = "com.google.android.finsky.protos";
+
+import "device_configuration_proto.proto";
+
+message UploadDeviceConfigResponse {
+  optional string uploadDeviceConfigToken = 1;
+}
+
+message UploadDeviceConfigRequest {
+  optional DeviceConfigurationProto.DeviceConfigurationProto deviceConfiguration = 1;
+  optional string manufacturer = 2;
+  optional string gcmRegistrationId = 3;
+}
+

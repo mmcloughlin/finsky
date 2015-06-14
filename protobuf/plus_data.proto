@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package PlusData;
+
+option java_outer_classname = "PlusData";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message OBSOLETE_PlusProfile {
+  optional string displayName = 2;
+  optional string profileImageUrl = 4;
+  optional Common.Image profileImage = 5;
+}
+

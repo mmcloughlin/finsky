@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package UserActivity;
+
+option java_outer_classname = "UserActivity";
+option java_package = "com.google.android.finsky.protos";
+
+import "document_v2.proto";
+
+message UserActivitySettingsResponse {
+  optional DocumentV2.DocV2 currentUser = 1;
+  optional string settingsTitle = 2;
+  optional string settingsDescription = 3;
+  optional string settingsTosHtml = 4;
+  optional bool optIn = 5;
+}
+
+message RecordUserActivityResponse {
+}
+

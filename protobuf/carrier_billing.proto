@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package CarrierBilling;
+
+option java_outer_classname = "CarrierBilling";
+option java_package = "com.google.android.finsky.protos";
+
+import "billing_address.proto";
+import "common_device.proto";
+
+message InitiateAssociationResponse {
+  optional string userToken = 1;
+}
+
+message VerifyAssociationResponse {
+  optional int32 status = 1;
+  optional BillingAddress.Address billingAddress = 2;
+  optional CommonDevice.CarrierTos carrierTos = 3;
+  optional string carrierErrorMessage = 4;
+}
+

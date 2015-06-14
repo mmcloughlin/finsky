@@ -1,0 +1,50 @@
+syntax = "proto2";
+
+package Browse;
+
+option java_outer_classname = "Browse";
+option java_package = "com.google.android.finsky.protos";
+
+import "resolve_link.proto";
+import "play_survey.proto";
+import "common.proto";
+
+message QuickLink {
+  optional string name = 1;
+  optional Common.Image image = 2;
+  optional ResolveLink.ResolvedLink link = 3;
+  optional bool displayRequired = 4;
+  optional bytes serverLogsCookie = 5;
+  optional int32 backendId = 6;
+  optional bool prismStyle = 7;
+}
+
+message BrowseResponse {
+  optional string contentsUrl = 1;
+  optional string promoUrl = 2;
+  repeated BrowseLink category = 3;
+  repeated BrowseLink breadcrumb = 4;
+  repeated QuickLink quickLink = 5;
+  optional bytes serverLogsCookie = 6;
+  optional string title = 7;
+  optional int32 backendId = 8;
+  repeated BrowseTab browseTab = 9;
+  optional int32 landingTabIndex = 10;
+  optional int32 quickLinkTabIndex = 11;
+  optional int32 quickLinkFallbackTabIndex = 12;
+  optional PlaySurvey.Survey survey = 13;
+}
+
+message BrowseTab {
+  optional string title = 1;
+  optional bytes serverLogsCookie = 2;
+  optional string listUrl = 3;
+  repeated BrowseLink category = 4;
+}
+
+message BrowseLink {
+  optional string name = 1;
+  optional string dataUrl = 3;
+  optional bytes serverLogsCookie = 4;
+}
+

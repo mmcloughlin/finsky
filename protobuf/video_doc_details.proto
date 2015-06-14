@@ -1,0 +1,70 @@
+syntax = "proto2";
+
+package VideoDocDetails;
+
+option java_outer_classname = "VideoDocDetails";
+option java_package = "com.google.android.finsky.protos";
+
+
+message TvEpisodeDetails {
+  optional string parentDetailsUrl = 1;
+  optional int32 episodeIndex = 2;
+  optional string releaseDate = 3;
+}
+
+message TvSeasonDetails {
+  optional string parentDetailsUrl = 1;
+  optional int32 seasonIndex = 2;
+  optional string releaseDate = 3;
+  optional string broadcaster = 4;
+  optional int32 episodeCount = 5;
+  optional int32 expectedEpisodeCount = 6;
+}
+
+message VideoRentalTerm {
+  message Term {
+    optional string header = 5;
+    optional string body = 6;
+  }
+
+  optional int32 offerType = 1;
+  optional string offerAbbreviation = 2;
+  optional string rentalHeader = 3;
+  repeated Term term = 4;
+}
+
+message VideoCredit {
+  optional int32 creditType = 1;
+  optional string credit = 2;
+  repeated string name = 3;
+}
+
+message TvShowDetails {
+  optional int32 seasonCount = 1;
+  optional int32 startYear = 2;
+  optional int32 endYear = 3;
+  optional string broadcaster = 4;
+}
+
+message VideoDetails {
+  repeated VideoCredit credit = 1;
+  optional string duration = 2;
+  optional string releaseDate = 3;
+  optional string contentRating = 4;
+  optional int64 likes = 5;
+  optional int64 dislikes = 6;
+  repeated string genre = 7;
+  repeated Trailer trailer = 8;
+  repeated VideoRentalTerm rentalTerm = 9;
+  repeated string audioLanguage = 10;
+  repeated string captionLanguage = 11;
+}
+
+message Trailer {
+  optional string trailerId = 1;
+  optional string title = 2;
+  optional string thumbnailUrl = 3;
+  optional string watchUrl = 4;
+  optional string duration = 5;
+}
+

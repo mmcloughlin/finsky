@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+package ResponseMessages;
+
+option java_outer_classname = "ResponseMessages";
+option java_package = "com.google.android.finsky.protos";
+
+
+message ServerMetadata {
+  optional int64 latencyMillis = 1;
+}
+
+message PreFetch {
+  optional string url = 1;
+  optional bytes response = 2;
+  optional string etag = 3;
+  optional int64 ttl = 4;
+  optional int64 softTtl = 5;
+}
+
+message ServerCommands {
+  optional bool clearCache = 1;
+  optional string displayErrorMessage = 2;
+  optional string logErrorStacktrace = 3;
+}
+

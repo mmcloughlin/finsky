@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package RequestContextOuterClass;
+
+option java_outer_classname = "RequestContextOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common";
+
+import "context_outer_class.proto";
+
+message RequestContext {
+  optional bytes sessionData = 2;
+  optional string languageCode = 7;
+  optional int32 clientType = 8;
+  optional int64 clientVersion = 9;
+  optional ContextOuterClass.NativeClientContext nativeContext = 10;
+  optional string requestId = 11;
+  optional bool isPrefetchRequest = 13;
+}
+

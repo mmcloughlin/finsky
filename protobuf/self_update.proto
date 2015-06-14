@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package SelfUpdate;
+
+option java_outer_classname = "SelfUpdate";
+option java_package = "com.google.android.finsky.protos";
+
+
+message SelfUpdateResponse {
+  optional bool requiresUploadDeviceConfig = 1;
+  optional int32 latestClientVersionCode = 2;
+}
+

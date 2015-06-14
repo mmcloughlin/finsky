@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package Voucher;
+
+option java_outer_classname = "Voucher";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message LibraryVoucher {
+  optional Common.VoucherId voucherId = 1;
+}
+

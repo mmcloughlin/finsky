@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package BookDocDetails;
+
+option java_outer_classname = "BookDocDetails";
+option java_package = "com.google.android.finsky.protos";
+
+
+message BookDetails {
+  optional string publisher = 4;
+  optional string publicationDate = 5;
+  optional string isbn = 6;
+  optional int32 numberOfPages = 7;
+  optional string aboutTheAuthor = 17;
+}
+

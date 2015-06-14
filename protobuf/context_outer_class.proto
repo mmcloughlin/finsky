@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+package ContextOuterClass;
+
+option java_outer_classname = "ContextOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.common";
+
+import "device_fingerprinting.proto";
+
+message NativeClientContext {
+  optional string imsiHash = 1;
+  optional string mccMnc = 2;
+  optional string osVersion = 3;
+  optional string device = 4;
+  optional int32 screenWidthPx = 5;
+  optional int32 screenHeightPx = 6;
+  optional float screenXDpi = 7;
+  optional float screenYDpi = 8;
+  optional string packageName = 9;
+  optional string packageVersionCode = 10;
+  optional string packageVersionName = 11;
+  optional DeviceFingerprinting.DeviceFingerprinting.Parsed riskData = 12;
+  optional string integratorPackageName = 13;
+  optional string marketClientId = 14;
+  optional int32 androidClientSubtype = 15;
+}
+

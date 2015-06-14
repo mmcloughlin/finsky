@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+package PlayResponse;
+
+option java_outer_classname = "PlayResponse";
+option java_package = "com.google.android.finsky.protos";
+
+import "plus_profile.proto";
+import "response_messages.proto";
+import "play_plus_profile.proto";
+
+message PlayPayload {
+  optional PlayPlusProfile.PlayPlusProfileResponse oBSOLETEPlusProfileResponse = 1;
+  optional PlusProfile.PlusProfileResponse plusProfileResponse = 2;
+}
+
+message PlayResponseWrapper {
+  optional PlayPayload payload = 1;
+  optional ResponseMessages.ServerCommands commands = 2;
+  repeated ResponseMessages.PreFetch preFetch = 3;
+  optional ResponseMessages.ServerMetadata serverMetadata = 4;
+}
+

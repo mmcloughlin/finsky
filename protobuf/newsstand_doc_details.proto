@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package NewsstandDocDetails;
+
+option java_outer_classname = "NewsstandDocDetails";
+option java_package = "com.google.android.finsky.protos";
+
+
+message MagazineDetails {
+  optional string parentDetailsUrl = 1;
+  optional string deviceAvailabilityDescriptionHtml = 2;
+  optional string psvDescription = 3;
+  optional string deliveryFrequencyDescription = 4;
+}
+

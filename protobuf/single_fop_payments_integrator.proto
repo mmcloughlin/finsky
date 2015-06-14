@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package SingleFopPaymentsIntegrator;
+
+option java_outer_classname = "SingleFopPaymentsIntegrator";
+option java_package = "com.google.android.finsky.protos";
+
+
+message SingleFopPaymentsIntegratorContext {
+  optional bytes commonToken = 1;
+  optional bytes instrumentToken = 2;
+}
+

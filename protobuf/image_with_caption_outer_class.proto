@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package ImageWithCaptionOuterClass;
+
+option java_outer_classname = "ImageWithCaptionOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.generic";
+
+
+message ImageWithCaption {
+  optional string imageUri = 1;
+  optional string altText = 3;
+}
+

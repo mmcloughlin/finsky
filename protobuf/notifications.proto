@@ -1,0 +1,60 @@
+syntax = "proto2";
+
+package Notifications;
+
+option java_outer_classname = "Notifications";
+option java_package = "com.google.android.finsky.protos";
+
+import "library_update_proto.proto";
+import "android_app_delivery.proto";
+import "common.proto";
+
+message AndroidAppNotificationData {
+  optional int32 versionCode = 1;
+  optional string assetId = 2;
+}
+
+message LibraryDirtyData {
+  optional int32 backend = 1;
+  optional string libraryId = 2;
+}
+
+message InAppNotificationData {
+  optional string checkoutOrderId = 1;
+  optional string inAppNotificationId = 2;
+}
+
+message Notification {
+  optional int32 notificationType = 1;
+  optional int64 timestamp = 3;
+  optional Common.Docid docid = 4;
+  optional string docTitle = 5;
+  optional string userEmail = 6;
+  optional AndroidAppNotificationData appData = 7;
+  optional AndroidAppDelivery.AndroidAppDeliveryData appDeliveryData = 8;
+  optional PurchaseRemovalData purchaseRemovalData = 9;
+  optional UserNotificationData userNotificationData = 10;
+  optional InAppNotificationData inAppNotificationData = 11;
+  optional PurchaseDeclinedData purchaseDeclinedData = 12;
+  optional string notificationId = 13;
+  optional LibraryUpdateProto.LibraryUpdate libraryUpdate = 14;
+  optional LibraryDirtyData libraryDirtyData = 15;
+}
+
+message PurchaseDeclinedData {
+  optional int32 reason = 1;
+  optional bool showNotification = 2;
+}
+
+message PurchaseRemovalData {
+  optional bool malicious = 1;
+}
+
+message UserNotificationData {
+  optional string notificationTitle = 1;
+  optional string notificationText = 2;
+  optional string tickerText = 3;
+  optional string dialogTitle = 4;
+  optional string dialogText = 5;
+}
+

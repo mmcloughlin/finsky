@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package ContentFlagging;
+
+option java_outer_classname = "ContentFlagging";
+option java_package = "com.google.android.finsky.protos";
+
+
+message FlagContentResponse {
+}
+

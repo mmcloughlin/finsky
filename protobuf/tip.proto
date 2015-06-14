@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package Tip;
+
+option java_outer_classname = "Tip";
+option java_package = "com.google.android.finsky.protos";
+
+
+message ReviewTip {
+  optional string tipUrl = 1;
+  optional string text = 2;
+  optional int32 polarity = 3;
+  optional int64 reviewCount = 4;
+}
+

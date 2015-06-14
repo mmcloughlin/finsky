@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+package UiErrorOuterClass;
+
+option java_outer_classname = "UiErrorOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common";
+
+import "form_field_reference_outer_class.proto";
+
+message FormFieldMessage {
+  optional string message = 3;
+  optional FormFieldReferenceOuterClass.FormFieldReference formFieldReference = 5;
+}
+
+message UiError {
+  optional string message = 1;
+  repeated FormFieldMessage formFieldMessage = 2;
+  optional string errorCode = 3;
+  optional string internalDetails = 4;
+  optional int32 action = 5;
+}
+

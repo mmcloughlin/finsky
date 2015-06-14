@@ -1,0 +1,229 @@
+syntax = "proto2";
+
+package PlayStore;
+
+option java_outer_classname = "PlayStore";
+option java_package = "com.google.android.finsky.analytics";
+
+
+message NlpRepairStatus {
+  optional int32 repairStatus = 1;
+  optional int32 flags = 2;
+  optional int32 versionCode = 3;
+  optional string signatureHash = 4;
+  optional bool foundTestKeys = 5;
+  optional bool holdoffUntilBoot = 6;
+  optional bool holdoffUntilWipe = 7;
+  optional bool holdoffAfterInstall = 8;
+  optional int32 enabled = 9;
+}
+
+message PlayStoreImpressionEvent {
+  optional PlayStoreUiElement tree = 1;
+  repeated PlayStoreUiElement referrerPath = 2;
+  optional int64 id = 3;
+}
+
+message PlayStoreUiElementInfo {
+  message InstrumentInfo {
+    optional int32 instrumentFamily = 1;
+    optional bool isDefault = 2;
+  }
+
+  optional InstrumentInfo instrumentInfo = 1;
+  optional string serialDocid = 2;
+  optional string host = 3;
+  optional string document = 4;
+  optional int32 offerType = 5;
+  optional bool isImeAction = 6;
+  optional AuthContext authContext = 7;
+}
+
+message PlayStoreClickEvent {
+  repeated PlayStoreUiElement elementPath = 1;
+}
+
+message AppData {
+  optional int32 version = 1;
+  optional int32 oldVersion = 2;
+  optional bool systemApp = 3;
+  optional bool downloadExternal = 4;
+  optional bool downloadGzip = 5;
+  optional bool downloadPatch = 6;
+  optional string splitId = 7;
+}
+
+message AuthContext {
+  optional int32 mode = 1;
+}
+
+message DeviceFeature {
+  message DeviceFeatureInfo {
+    optional string featureName = 1;
+    optional int64 lastConnectionTimeMs = 2;
+  }
+
+  repeated DeviceFeatureInfo deviceFeatureInfo = 1;
+}
+
+message PlayStoreBackgroundActionEvent {
+  optional int32 type = 1;
+  optional string document = 2;
+  optional string reason = 3;
+  optional int32 errorCode = 4;
+  optional string exceptionType = 5;
+  optional bytes serverLogsCookie = 6;
+  optional int32 offerType = 7;
+  optional int32 fromSetting = 8;
+  optional int32 toSetting = 9;
+  optional PlayStoreSessionData sessionInfo = 10;
+  optional AppData appData = 11;
+  optional int64 serverLatencyMs = 12;
+  optional int64 clientLatencyMs = 13;
+  optional NlpRepairStatus nlpRepairStatus = 14;
+  optional bool operationSuccess = 15;
+  optional string host = 16;
+  optional WidgetEventData widgetEventData = 17;
+  optional WifiAutoUpdateAttempt wifiAutoUpdateAttempt = 18;
+  optional int32 attempts = 19;
+  optional bool offerCheckoutFlowRequired = 20;
+  optional SearchSuggestionReport searchSuggestionReport = 21;
+  optional string callingPackage = 23;
+  optional ReviewData reviewData = 24;
+  optional string lastUrl = 25;
+  optional AuthContext authContext = 26;
+  optional DeviceFeature deviceFeature = 27;
+  optional PlayStoreRpcReport rpcReport = 28;
+  optional CreditCardEntryAction creditCardEntryAction = 29;
+  optional string externalReferrer = 30;
+}
+
+message CreditCardEntryAction {
+  optional bool panOcrEnabled = 1;
+  optional int32 panEntryType = 2;
+  optional bool panRecognizedByOcr = 3;
+  optional bool panValidationErrorOccurred = 4;
+  optional bool expDateOcrEnabled = 5;
+  optional int32 expDateEntryType = 6;
+  optional bool expDateRecognizedByOcr = 7;
+  optional bool expDateValidationErrorOccurred = 8;
+  optional int32 numOcrAttempts = 9;
+  optional int32 ocrExitReason = 10;
+}
+
+message ReviewData {
+  optional int32 reviewSource = 1;
+  optional int32 rating = 2;
+  optional bool containsText = 3;
+}
+
+message WidgetEventData {
+  optional int32 classId = 1;
+  optional int32 intentActionId = 2;
+  optional int32 numWidgets = 3;
+  optional int32 backendId = 4;
+  optional int32 minWidth = 5;
+  optional int32 minHeight = 6;
+  optional int32 maxWidth = 7;
+  optional int32 maxHeight = 8;
+}
+
+message PlayStoreUiElement {
+  optional int32 type = 1;
+  optional bytes serverLogsCookie = 2;
+  optional PlayStoreUiElementInfo clientLogsCookie = 3;
+  repeated PlayStore.PlayStoreUiElement child = 4;
+}
+
+message PlayStoreRpcReport {
+  optional string url = 1;
+  optional int64 clientLatencyMs = 2;
+  optional int64 serverLatencyMs = 3;
+  optional int32 numAttempts = 4;
+  optional int32 timeoutMs = 5;
+  optional float backoffMultiplier = 6;
+  optional bool wasSuccessful = 7;
+  optional int32 startConnectionType = 8;
+  optional int32 endConnectionType = 9;
+  optional int32 responseBodySizeBytes = 10;
+  optional int32 volleyErrorType = 11;
+}
+
+message PlayStoreSearchEvent {
+  optional string query = 1;
+  optional string queryUrl = 2;
+  optional string referrerUrl = 3;
+}
+
+message WifiAutoUpdateAttempt {
+  optional bool autoUpdateSuccess = 1;
+  optional int32 numFailedAttempts = 2;
+  optional int64 timeSinceFirstFailMs = 3;
+  optional int64 wifiCheckIntervalMs = 4;
+  optional bool skippedDueToProjection = 5;
+  optional bool skippedDueToPower = 6;
+  optional bool skippedDueToWifi = 7;
+  optional int32 recheckState = 8;
+  optional bool skippedDueToNewPermission = 9;
+  optional bool skippedDueToLargeDownload = 10;
+  optional bool skippedDueToDisabledByUser = 11;
+  optional bool skippedDueToGlobalDisabled = 12;
+}
+
+message PlayStoreLogEvent {
+  optional PlayStoreImpressionEvent impression = 1;
+  optional PlayStoreClickEvent click = 3;
+  optional PlayStoreBackgroundActionEvent backgroundAction = 4;
+  optional PlayStoreSearchEvent search = 5;
+  optional PlayStoreDeepLinkEvent deepLink = 6;
+}
+
+message PlayStoreSessionData {
+  optional bool globalAutoUpdateEnabled = 1;
+  optional bool globalAutoUpdateOverWifiOnly = 2;
+  optional int32 autoUpdateCleanupDialogNumTimesShown = 3;
+  optional int32 networkType = 4;
+  optional int32 networkSubType = 5;
+  optional int32 numAccountsOnDevice = 6;
+  optional int32 numInstalledApps = 7;
+  optional int32 numAutoUpdatingInstalledApps = 8;
+  optional int32 numInstalledAppsNotAutoUpdating = 9;
+  optional bool gaiaPasswordAuthOptedOut = 10;
+  optional int32 contentFilterLevel = 11;
+  optional bool allowUnknownSources = 12;
+  optional PromptForFopData promptForFopData = 13;
+  optional int32 purchaseAuthType = 14;
+  optional int32 downloadDataDirSizeMb = 15;
+  optional int64 recommendedMaxDownloadOverMobileBytes = 16;
+}
+
+message SearchSuggestionReport {
+  optional string query = 1;
+  optional string suggestedQuery = 2;
+  optional int64 clientLatencyMs = 3;
+  optional int32 source = 4;
+  optional int32 resultCount = 5;
+  optional bytes responseServerLogsCookie = 6;
+  optional bytes suggestionServerLogsCookie = 7;
+}
+
+message PromptForFopData {
+  optional bool hasFop = 1;
+  optional bool fopAdded = 2;
+  optional int32 numDialogShown = 3;
+  optional int32 numFopSelectorShown = 4;
+  optional int32 numSnooze = 5;
+}
+
+message PlayStoreDeepLinkEvent {
+  optional string externalUrl = 1;
+  optional int32 resolvedType = 2;
+  optional string packageName = 3;
+  optional int32 minVersion = 4;
+  optional bool newEnough = 5;
+  optional bool canResolve = 6;
+  optional bytes serverLogsCookie = 7;
+  optional string externalReferrer = 8;
+  optional string referrerPackage = 9;
+}
+

@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+package DocList;
+
+option java_outer_classname = "DocList";
+option java_package = "com.google.android.finsky.protos";
+
+import "document_v2.proto";
+import "document_v1.proto";
+
+message ListResponse {
+  repeated Bucket bucket = 1;
+  repeated DocumentV2.DocV2 doc = 2;
+}
+
+message Bucket {
+  repeated DocumentV1.DocV1 document = 1;
+  optional bool multiCorpus = 2;
+  optional string title = 3;
+  optional string iconUrl = 4;
+  optional string fullContentsUrl = 5;
+  optional double relevance = 6;
+  optional int64 estimatedResults = 7;
+  optional string analyticsCookie = 8;
+  optional string fullContentsListUrl = 9;
+  optional string nextPageUrl = 10;
+  optional bool ordered = 11;
+}
+

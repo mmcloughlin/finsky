@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package Targeting;
+
+option java_outer_classname = "Targeting";
+option java_package = "com.google.android.finsky.protos";
+
+
+message Targets {
+  repeated int64 targetId = 1;
+  optional bytes signature = 2;
+}
+

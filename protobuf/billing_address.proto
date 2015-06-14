@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+package BillingAddress;
+
+option java_outer_classname = "BillingAddress";
+option java_package = "com.google.android.finsky.protos";
+
+
+message Address {
+  optional string name = 1;
+  optional string addressLine1 = 2;
+  optional string addressLine2 = 3;
+  optional string city = 4;
+  optional string state = 5;
+  optional string postalCode = 6;
+  optional string postalCountry = 7;
+  optional string dependentLocality = 8;
+  optional string sortingCode = 9;
+  optional string languageCode = 10;
+  optional string phoneNumber = 11;
+  optional bool deprecatedIsReduced = 12;
+  optional string firstName = 13;
+  optional string lastName = 14;
+  optional string email = 15;
+}
+

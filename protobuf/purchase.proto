@@ -1,0 +1,70 @@
+syntax = "proto2";
+
+package Purchase;
+
+option java_outer_classname = "Purchase";
+option java_package = "com.google.android.finsky.protos";
+
+import "android_app_delivery.proto";
+import "document_v2.proto";
+import "library_update_proto.proto";
+import "acquisition.proto";
+import "challenge_proto.proto";
+import "common_device.proto";
+
+message PreparePurchaseResponse {
+  optional PurchaseStatus purchaseStatus = 1;
+  optional ChallengeProto.Challenge challenge = 2;
+  optional ClientCart cart = 3;
+  repeated LibraryUpdateProto.LibraryUpdate libraryUpdate = 4;
+  optional bytes serverLogsCookie = 5;
+  repeated DocumentV2.DocV2 applicableVoucher = 6;
+  repeated int32 appliedVoucherIndex = 7;
+  optional ChangeSubscription changeSubscription = 8;
+}
+
+message CommitPurchaseResponse {
+  optional PurchaseStatus purchaseStatus = 1;
+  optional ChallengeProto.Challenge challenge = 2;
+  repeated LibraryUpdateProto.LibraryUpdate libraryUpdate = 3;
+  optional AndroidAppDelivery.AndroidAppDeliveryData appDeliveryData = 4;
+  optional bytes serverLogsCookie = 5;
+  optional string encodedDeliveryToken = 6;
+  optional Acquisition.SuccessInfo successInfo = 7;
+}
+
+message PurchaseStatus {
+  optional int32 statusCode = 1;
+  optional string errorMessageHtml = 2;
+  optional int32 permissionError = 3;
+}
+
+message ApplicableVoucher {
+  optional DocumentV2.DocV2 doc = 1;
+  optional string formattedDiscountAmount = 2;
+  optional bool applied = 3;
+}
+
+message ClientCart {
+  optional string title = 1;
+  optional string formattedPrice = 2;
+  optional string purchaseContextToken = 3;
+  optional CommonDevice.Instrument instrument = 4;
+  repeated string extendedDetailHtml = 5;
+  optional string footerHtml = 6;
+  optional string addInstrumentPromptHtml = 7;
+  optional string buttonText = 8;
+  optional ChallengeProto.Challenge completePurchaseChallenge = 9;
+  optional string priceByline = 10;
+  repeated string detailHtml = 11;
+  repeated DocumentV2.DocV2 applicableVoucher = 12;
+  repeated int32 appliedVoucherIndex = 13;
+  repeated ApplicableVoucher applicableVouchers = 14;
+  optional string formattedOriginalPrice = 15;
+}
+
+message ChangeSubscription {
+  optional string title = 1;
+  optional string descriptionHtml = 2;
+}
+

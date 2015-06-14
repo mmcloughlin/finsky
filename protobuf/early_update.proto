@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+package EarlyUpdate;
+
+option java_outer_classname = "EarlyUpdate";
+option java_package = "com.google.android.finsky.protos";
+
+import "device_configuration_proto.proto";
+import "common.proto";
+
+message EarlyUpdateResponse {
+  repeated EarlyDocumentInfo earlyDocumentInfo = 1;
+}
+
+message EarlyUpdateRequest {
+  optional DeviceConfigurationProto.DeviceConfigurationProto deviceConfiguration = 1;
+}
+
+message EarlyDocumentInfo {
+  optional Common.Docid docid = 1;
+  optional string title = 2;
+  optional int32 versionCode = 3;
+  optional bool background = 4;
+  optional bool critical = 5;
+}
+

@@ -1,0 +1,35 @@
+syntax = "proto2";
+
+package AddressFormOuterClass;
+
+option java_outer_classname = "AddressFormOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.components";
+
+import "postaladdress.proto";
+
+message AddressForm {
+  repeated string allowedCountryCode = 4;
+  optional bool phoneNumberForm = 5;
+  optional string id = 6;
+  optional AddressFormValue initialValue = 7;
+  repeated string postalCodeOnlyCountryCode = 9;
+  optional string recipientLabel = 10;
+  optional string hideFormFieldsToggleLabel = 11;
+  repeated int32 readOnlyField = 12;
+  optional string title = 13;
+  repeated int32 hiddenField = 14;
+  optional string initialCountryI18NDataJson = 15;
+  optional int32 editability = 20;
+}
+
+message CountrySelector {
+  repeated string allowedCountryCode = 2;
+  optional string initialCountryCode = 3;
+}
+
+message AddressFormValue {
+  optional Postaladdress.PostalAddress address = 1;
+  optional string phoneNumber = 2;
+  optional bool isHidden = 3;
+}
+

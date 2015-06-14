@@ -1,0 +1,34 @@
+syntax = "proto2";
+
+package SearchSuggest;
+
+option java_outer_classname = "SearchSuggest";
+option java_package = "com.google.android.finsky.protos";
+
+import "document_v2.proto";
+import "doc_annotations.proto";
+import "common.proto";
+
+message NavSuggestion {
+  optional string docId = 1;
+  optional bytes imageBlob = 2;
+  optional Common.Image image = 3;
+  optional string description = 4;
+}
+
+message Suggestion {
+  optional int32 type = 1;
+  optional string suggestedQuery = 2;
+  optional NavSuggestion navSuggestion = 3;
+  optional bytes serverLogsCookie = 4;
+  optional Common.Image image = 5;
+  optional string displayText = 6;
+  optional DocAnnotations.Link link = 7;
+  optional DocumentV2.DocV2 document = 8;
+}
+
+message SearchSuggestResponse {
+  repeated Suggestion suggestion = 1;
+  optional bytes serverLogsCookie = 2;
+}
+

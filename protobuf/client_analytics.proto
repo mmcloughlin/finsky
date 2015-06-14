@@ -1,0 +1,129 @@
+syntax = "proto2";
+
+package ClientAnalytics;
+
+option java_outer_classname = "ClientAnalytics";
+option java_package = "com.google.android.play.analytics";
+
+
+message DesktopClientInfo {
+  optional string clientId = 1;
+  optional string loggingId = 2;
+  optional string os = 3;
+  optional string osMajorVersion = 4;
+  optional string osFullVersion = 5;
+  optional string applicationBuild = 6;
+}
+
+message ClientInfo {
+  optional int32 clientType = 1;
+  optional AndroidClientInfo androidClientInfo = 2;
+  optional DesktopClientInfo desktopClientInfo = 3;
+  optional IosClientInfo iosClientInfo = 4;
+  optional PlayCeClientInfo playCeClientInfo = 5;
+  optional string remoteHost = 6;
+  optional string remoteHost6 = 7;
+}
+
+message ExperimentIdList {
+  repeated string id = 1;
+}
+
+message ActiveExperiments {
+  repeated string clientAlteringExperiment = 1;
+  repeated string otherExperiment = 2;
+  repeated int32 gwsExperiment = 3;
+  repeated int32 playExperiment = 4;
+}
+
+message LogEventKeyValues {
+  optional string key = 1;
+  optional string value = 2;
+}
+
+message LogEvent {
+  optional int64 eventTimeMs = 1;
+  optional string tag = 2;
+  repeated LogEventKeyValues value = 3;
+  optional bytes sourceExtension = 6;
+  optional ActiveExperiments exp = 7;
+  optional bytes sourceExtensionJs = 8;
+  optional AppUsage1pLogEvent appUsage1P = 9;
+  optional bool isUserInitiated = 10;
+  optional int32 eventCode = 11;
+  optional int32 eventFlowId = 12;
+  optional bytes sourceExtensionJson = 13;
+  optional string testId = 14;
+  optional int64 timezoneOffsetSeconds = 15;
+  optional ExperimentIds experimentIds = 16;
+  optional int64 eventUptimeMs = 17;
+  optional bytes clientVe = 18;
+}
+
+message PlayCeClientInfo {
+  optional string clientId = 1;
+  optional string make = 3;
+  optional string model = 4;
+  optional string applicationBuild = 5;
+  optional string platformVersion = 6;
+  optional string loggingId = 7;
+}
+
+message ExperimentIds {
+  optional bytes clearBlob = 1;
+  repeated bytes encryptedBlob = 2;
+  optional bool usersMatch = 3;
+}
+
+message AppUsage1pLogEvent {
+  optional int32 appType = 1;
+  optional string androidPackageName = 2;
+  optional string version = 3;
+}
+
+message IosClientInfo {
+  optional string clientId = 1;
+  optional string loggingId = 2;
+  optional string osMajorVersion = 3;
+  optional string osFullVersion = 4;
+  optional string applicationBuild = 5;
+}
+
+message LogResponse {
+  optional int64 nextRequestWaitMillis = 1;
+  optional ExperimentIdList experiments = 2;
+}
+
+message AndroidClientInfo {
+  optional int64 androidId = 1;
+  optional string loggingId = 2;
+  optional int32 sdkVersion = 3;
+  optional string model = 4;
+  optional string product = 5;
+  optional string osBuild = 6;
+  optional string applicationBuild = 7;
+  optional string hardware = 8;
+  optional string device = 9;
+  optional string mccMnc = 10;
+  optional string locale = 11;
+  optional string country = 12;
+  optional string manufacturer = 13;
+  optional string brand = 14;
+  optional string board = 15;
+  optional string radioVersion = 16;
+  optional string fingerprint = 17;
+  optional int64 deviceId = 18;
+  optional int32 gmsCoreVersionCode = 19;
+}
+
+message LogRequest {
+  optional ClientInfo clientInfo = 1;
+  optional int32 logSource = 2;
+  repeated LogEvent logEvent = 3;
+  optional int64 requestTimeMs = 4;
+  repeated bytes serializedLogEvents = 5;
+  optional string logSourceName = 6;
+  optional string zwiebackCookie = 7;
+  optional int64 requestUptimeMs = 8;
+}
+

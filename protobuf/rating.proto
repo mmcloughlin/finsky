@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+package Rating;
+
+option java_outer_classname = "Rating";
+option java_package = "com.google.android.finsky.protos";
+
+
+message AggregateRating {
+  optional int32 type = 1;
+  optional float starRating = 2;
+  optional int64 ratingsCount = 3;
+  optional int64 oneStarRatings = 4;
+  optional int64 twoStarRatings = 5;
+  optional int64 threeStarRatings = 6;
+  optional int64 fourStarRatings = 7;
+  optional int64 fiveStarRatings = 8;
+  optional int64 thumbsUpCount = 9;
+  optional int64 thumbsDownCount = 10;
+  optional int64 commentCount = 11;
+  optional double bayesianMeanRating = 12;
+  repeated Tip tip = 13;
+}
+
+message Tip {
+  optional string tipId = 1;
+  optional string text = 2;
+  optional int32 polarity = 3;
+  optional int64 reviewCount = 4;
+  optional string language = 5;
+}
+

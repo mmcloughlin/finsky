@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+package Preloads;
+
+option java_outer_classname = "Preloads";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message Preload {
+  optional Common.Docid docid = 1;
+  optional int32 versionCode = 2;
+  optional string title = 3;
+  optional Common.Image icon = 4;
+  optional string deliveryToken = 5;
+  optional int32 installLocation = 6;
+  optional int64 size = 7;
+}
+
+message PreloadsResponse {
+  optional Preload configPreload = 1;
+  repeated Preload appPreload = 2;
+}
+

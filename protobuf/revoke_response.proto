@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package RevokeResponse;
+
+option java_multiple_files = true;
+option java_outer_classname = "RevokeResponse";
+option java_package = "com.google.android.finsky.protos";
+
+import "library_update_proto.proto";
+
+message RevokeResponse {
+  optional LibraryUpdateProto.LibraryUpdate libraryUpdate = 1;
+}
+

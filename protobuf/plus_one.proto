@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package PlusOne;
+
+option java_outer_classname = "PlusOne";
+option java_package = "com.google.android.finsky.protos";
+
+
+message PlusOneResponse {
+}
+

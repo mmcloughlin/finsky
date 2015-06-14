@@ -1,0 +1,60 @@
+syntax = "proto2";
+
+package SimpleFormOuterClass;
+
+option java_outer_classname = "SimpleFormOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.components";
+
+import "legal_message_outer_class.proto";
+import "info_message_outer_class.proto";
+import "address_form_outer_class.proto";
+import "ui_field_outer_class.proto";
+import "form_header_outer_class.proto";
+
+message SubFormValue {
+  optional string id = 1;
+  optional bytes dataToken = 2;
+  repeated FieldValue fieldValue = 3;
+  optional string legalDocData = 4;
+}
+
+message SubForm {
+  optional FormHeaderOuterClass.FormHeader formHeader = 1;
+  repeated Field field = 2;
+  optional LegalMessageOuterClass.LegalMessage legalMessage = 3;
+}
+
+message Field {
+  optional UiFieldOuterClass.UiField uiField = 1;
+  optional AddressFormOuterClass.AddressForm addressForm = 2;
+  optional InfoMessageOuterClass.InfoMessage infoMessage = 3;
+}
+
+message SimpleFormValue {
+  message FormFieldValue {
+    optional SubFormValue subFormValue = 1;
+    optional FieldValue fieldValue = 2;
+  }
+
+  optional string id = 1;
+  optional bytes dataToken = 2;
+  repeated FormFieldValue formFieldValue = 3;
+  optional string legalDocData = 4;
+}
+
+message FieldValue {
+  optional UiFieldOuterClass.UiFieldValue uiFieldValue = 1;
+  optional AddressFormOuterClass.AddressFormValue addressFormValue = 2;
+}
+
+message SimpleForm {
+  message FormField {
+    optional SubForm subForm = 1;
+    optional Field field = 2;
+  }
+
+  optional FormHeaderOuterClass.FormHeader formHeader = 1;
+  repeated FormField formField = 2;
+  optional LegalMessageOuterClass.LegalMessage legalMessage = 3;
+}
+

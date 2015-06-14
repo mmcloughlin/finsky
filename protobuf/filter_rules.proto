@@ -1,0 +1,63 @@
+syntax = "proto2";
+
+package FilterRules;
+
+option java_outer_classname = "FilterRules";
+option java_package = "com.google.android.finsky.protos";
+
+import "ownership.proto";
+import "common.proto";
+
+message FilterEvaluationInfo {
+  repeated RuleEvaluation ruleEvaluation = 1;
+}
+
+message RuleEvaluation {
+  optional Rule rule = 1;
+  repeated string actualStringValue = 2;
+  repeated int64 actualLongValue = 3;
+  repeated bool actualBoolValue = 4;
+  repeated double actualDoubleValue = 5;
+}
+
+message Availability {
+  message PerDeviceAvailabilityRestriction {
+    optional int64 androidId = 10;
+    optional int32 deviceRestriction = 11;
+    optional int64 channelId = 12;
+    optional FilterEvaluationInfo filterInfo = 15;
+  }
+
+  optional int32 restriction = 5;
+  optional int32 offerType = 6;
+  optional Rule rule = 7;
+  repeated PerDeviceAvailabilityRestriction perDeviceAvailabilityRestriction = 9;
+  optional bool availableIfOwned = 13;
+  repeated Common.Install install = 14;
+  optional FilterEvaluationInfo filterInfo = 16;
+  optional Ownership.OwnershipInfo ownershipInfo = 17;
+  repeated AvailabilityProblem availabilityProblem = 18;
+  optional bool hidden = 21;
+}
+
+message Rule {
+  optional bool negate = 1;
+  optional int32 operator = 2;
+  optional int32 key = 3;
+  repeated string stringArg = 4;
+  repeated int64 longArg = 5;
+  repeated double doubleArg = 6;
+  repeated FilterRules.Rule subrule = 7;
+  optional int32 responseCode = 8;
+  optional string comment = 9;
+  repeated int64 stringArgHash = 10;
+  repeated int32 constArg = 11;
+  optional int32 availabilityProblemType = 12;
+  optional bool includeMissingValues = 13;
+}
+
+message AvailabilityProblem {
+  optional int32 problemType = 1;
+  repeated string missingValue = 2;
+}
+

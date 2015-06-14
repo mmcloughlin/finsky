@@ -1,0 +1,34 @@
+syntax = "proto2";
+
+package UiFieldOuterClass;
+
+option java_outer_classname = "UiFieldOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.generic";
+
+
+message UiFieldValue {
+  optional string name = 1;
+  optional string stringValue = 2;
+}
+
+message UiField {
+  message TextField {
+    message Validation {
+      optional string regex = 1;
+      optional string errorMessage = 2;
+    }
+
+    optional int32 maxLength = 2;
+    optional int32 keyboardLayout = 4;
+    repeated Validation validation = 5;
+    optional string initialValue = 6;
+    optional bool isMasked = 8;
+  }
+
+  optional string name = 1;
+  optional bool isOptional = 3;
+  optional string label = 4;
+  optional TextField textField = 6;
+  optional bool isDisabled = 11;
+}
+

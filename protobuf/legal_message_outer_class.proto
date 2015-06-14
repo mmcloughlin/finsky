@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package LegalMessageOuterClass;
+
+option java_outer_classname = "LegalMessageOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.components.legal";
+
+import "info_message_outer_class.proto";
+
+message LegalMessage {
+  optional string viewerUrl = 2;
+  optional string opaqueData = 3;
+  optional InfoMessageOuterClass.InfoMessage messageText = 5;
+}
+

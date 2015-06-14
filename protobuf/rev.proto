@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+package Rev;
+
+option java_outer_classname = "Rev";
+option java_package = "com.google.android.finsky.protos";
+
+import "document_v2.proto";
+import "doc_annotations.proto";
+import "tip.proto";
+import "common.proto";
+
+message CriticReviewsResponse {
+  optional string title = 1;
+  optional Common.Image aggregateSentiment = 2;
+  optional int32 totalNumReviews = 3;
+  optional int32 percentFavorable = 4;
+  optional string sourceText = 5;
+  optional DocAnnotations.Link source = 6;
+  repeated DocumentV2.Review review = 7;
+}
+
+message GetReviewsResponse {
+  repeated DocumentV2.Review review = 1;
+  optional int64 matchingCount = 2;
+  optional Tip.ReviewTip tip = 3;
+}
+
+message ReviewResponse {
+  optional GetReviewsResponse getResponse = 1;
+  optional string nextPageUrl = 2;
+  optional DocumentV2.Review updatedReview = 3;
+  optional string suggestionsListUrl = 4;
+  optional CriticReviewsResponse criticReviewsResponse = 5;
+}
+

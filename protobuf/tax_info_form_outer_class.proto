@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package TaxInfoFormOuterClass;
+
+option java_outer_classname = "TaxInfoFormOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.components.tax";
+
+import "ui_field_outer_class.proto";
+
+message TaxInfoFormValue {
+  optional string taxInfoFormId = 1;
+  repeated UiFieldOuterClass.UiFieldValue taxInfoValue = 3;
+}
+
+message TaxInfoForm {
+  optional string id = 1;
+  optional string label = 2;
+  repeated UiFieldOuterClass.UiField taxInfoField = 4;
+}
+

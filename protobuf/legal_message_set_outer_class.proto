@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package LegalMessageSetOuterClass;
+
+option java_outer_classname = "LegalMessageSetOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.components.legal";
+
+import "legal_message_outer_class.proto";
+
+message LegalMessageByCountry {
+  optional string country = 1;
+  optional LegalMessageOuterClass.LegalMessage message = 2;
+}
+
+message LegalMessageSet {
+  optional LegalMessageOuterClass.LegalMessage defaultMessage = 1;
+  repeated LegalMessageByCountry messageByCountry = 2;
+}
+

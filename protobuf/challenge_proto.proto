@@ -1,0 +1,172 @@
+syntax = "proto2";
+
+package ChallengeProto;
+
+option java_outer_classname = "ChallengeProto";
+option java_package = "com.google.android.finsky.protos";
+
+import "single_fop_payments_integrator.proto";
+import "billing_address.proto";
+
+message FormTextField {
+  optional string label = 1;
+  optional string defaultValue = 2;
+  optional string hint = 3;
+  optional string error = 4;
+  optional string postParam = 5;
+}
+
+message ChallengeError {
+  optional string title = 1;
+  optional string descriptionHtml = 2;
+  optional FormButton submitButton = 3;
+  optional FormButton cancelButton = 4;
+}
+
+message PaymentsUpdateChallenge {
+  optional SingleFopPaymentsIntegrator.SingleFopPaymentsIntegratorContext paymentsIntegratorContext = 1;
+  optional bool useClientCart = 2;
+}
+
+message AddressChallenge {
+  optional string responseAddressParam = 1;
+  optional string responseCheckboxesParam = 2;
+  optional string title = 3;
+  optional string descriptionHtml = 4;
+  repeated FormCheckbox checkbox = 5;
+  optional BillingAddress.Address address = 6;
+  repeated InputValidationError errorInputField = 7;
+  optional string errorHtml = 8;
+  repeated int32 requiredField = 9;
+  repeated Country supportedCountry = 10;
+}
+
+message Country {
+  optional string regionCode = 1;
+  optional string displayName = 2;
+}
+
+message Challenge {
+  optional AddressChallenge addressChallenge = 1;
+  optional AuthenticationChallenge authenticationChallenge = 2;
+  optional WebViewChallenge webViewChallenge = 3;
+  optional AgeChallenge ageChallenge = 4;
+  optional SmsCodeChallenge smsCodeChallenge = 5;
+  optional ChallengeError error = 6;
+  optional CvnChallenge cvnChallenge = 7;
+  optional PaymentsUpdateChallenge paymentsUpdateChallenge = 8;
+  optional RapChallenge rapChallenge = 9;
+  optional ChallengeSuccess success = 10;
+  optional AcknowledgementChallenge acknowledgementChallenge = 11;
+}
+
+message FormCheckbox {
+  optional string description = 1;
+  optional bool checked = 2;
+  optional bool required = 3;
+  optional string id = 4;
+  optional string postParam = 5;
+}
+
+message RapRefundParams {
+  optional string docId = 1;
+  optional string orderId = 2;
+  optional FormTextField requestReason = 3;
+}
+
+message AuthenticationChallenge {
+  optional int32 authenticationType = 1;
+  optional string responseAuthenticationTypeParam = 2;
+  optional string responseRetryCountParam = 3;
+  optional string gaiaHeaderText = 6;
+  optional string gaiaDescriptionTextHtml = 7;
+  optional string gaiaFooterTextHtml = 8;
+  optional FormCheckbox gaiaOptOutCheckbox = 9;
+  optional string gaiaOptOutDescriptionTextHtml = 10;
+  optional string documentTitle = 11;
+  optional string formattedPrice = 12;
+  optional string instrumentDisplayTitle = 13;
+  optional string challengeDescriptionTextHtml = 14;
+  optional bool displayClientAuthMessage = 15;
+}
+
+message AgeChallenge {
+  optional string title = 1;
+  optional string descriptionHtml = 2;
+  optional FormTextField fullName = 3;
+  optional FormTextField birthdate = 4;
+  optional FormTextField phoneNumber = 5;
+  optional FormRadioSelector genderSelection = 6;
+  optional FormRadioSelector carrierSelection = 7;
+  optional FormCheckbox citizenship = 8;
+  optional string submitFooterHtml = 9;
+  optional FormButton submitButton = 10;
+}
+
+message WebViewChallenge {
+  optional string startUrl = 1;
+  optional string targetUrlRegexp = 2;
+  optional string cancelButtonDisplayLabel = 3;
+  optional string responseTargetUrlParam = 4;
+  optional string cancelUrlRegexp = 5;
+  optional string title = 6;
+}
+
+message CvnChallenge {
+  optional string title = 1;
+  optional string descriptionHtml = 2;
+  optional int32 creditCardType = 3;
+  optional string escrowHandleParam = 4;
+}
+
+message AcknowledgementChallenge {
+  optional string responseAcknowledgementParam = 1;
+  optional string title = 2;
+  optional string descriptionHtml = 3;
+  optional bytes serverLogsCookie = 4;
+  optional string submitButtonLabel = 5;
+}
+
+message ChallengeSuccess {
+  optional string title = 1;
+  optional string description = 2;
+}
+
+message RapChallenge {
+  optional string title = 1;
+  optional string description = 2;
+  optional FormButton submitButton = 3;
+  optional RapRefundParams refundParams = 4;
+}
+
+message FormButton {
+  optional string label = 1;
+  optional string actionUrl = 2;
+  optional bool actionFailChallenge = 3;
+  repeated Challenge actionChallenge = 4;
+}
+
+message InputValidationError {
+  optional int32 inputField = 1;
+  optional string errorMessage = 2;
+}
+
+message SmsCodeChallenge {
+  optional string title = 1;
+  optional string descriptionHtml = 2;
+  optional FormTextField smsCode = 3;
+  optional FormButton resendCodeButton = 4;
+  optional FormButton submitButton = 5;
+}
+
+message FormRadioButton {
+  optional string label = 1;
+  optional string value = 2;
+  optional bool selected = 3;
+}
+
+message FormRadioSelector {
+  repeated FormRadioButton radioButton = 1;
+  optional string postParam = 2;
+}
+

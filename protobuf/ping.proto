@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package Ping;
+
+option java_outer_classname = "Ping";
+option java_package = "com.google.android.finsky.protos";
+
+
+message PingResponse {
+}
+

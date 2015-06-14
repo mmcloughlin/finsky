@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+package InstrumentFormOuterClass;
+
+option java_outer_classname = "InstrumentFormOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.components.instrument";
+
+import "simple_form_outer_class.proto";
+import "credit_card.proto";
+import "dcb.proto";
+import "username_password.proto";
+
+message InstrumentFormValue {
+  optional CreditCard.CreditCardFormValue creditCard = 1;
+  optional Dcb.DcbVerifyAssociationFormValue dcbVerifyAssociation = 4;
+  optional UsernamePassword.UsernamePasswordFormValue usernamePassword = 6;
+  optional SimpleFormOuterClass.SimpleFormValue simpleForm = 11;
+}
+
+message InstrumentForm {
+  optional CreditCard.CreditCardForm creditCard = 2;
+  optional Dcb.DcbVerifyAssociationForm dcbVerifyAssociation = 5;
+  optional UsernamePassword.UsernamePasswordForm usernamePassword = 7;
+  optional SimpleFormOuterClass.SimpleForm simpleForm = 11;
+}
+

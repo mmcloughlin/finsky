@@ -1,0 +1,33 @@
+syntax = "proto2";
+
+package Restore;
+
+option java_outer_classname = "Restore";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message GetBackupDocumentChoicesResponse {
+  repeated BackupDocumentInfo backupDocumentInfo = 1;
+}
+
+message GetBackupDeviceChoicesResponse {
+  repeated BackupDeviceInfo backupDeviceInfo = 1;
+}
+
+message BackupDeviceInfo {
+  optional int64 androidId = 1;
+  optional string name = 2;
+  optional string restoreToken = 3;
+  optional int32 numDocuments = 4;
+  optional int64 lastCheckinTimeMs = 5;
+}
+
+message BackupDocumentInfo {
+  optional Common.Docid docid = 1;
+  optional string title = 2;
+  optional int32 versionCode = 3;
+  optional Common.Image thumbnailImage = 4;
+  optional int32 restorePriority = 5;
+}
+

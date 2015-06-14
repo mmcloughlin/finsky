@@ -1,0 +1,114 @@
+syntax = "proto2";
+
+package CreateInstrument;
+
+option java_outer_classname = "CreateInstrument";
+option java_package = "com.google.android.finsky.protos";
+
+import "billing_address.proto";
+import "common.proto";
+
+message ResponseFormat {
+  optional int32 responseFormatType = 1;
+  optional bytes encryptionKey = 2;
+  optional string vendorSpecificSalt = 3;
+}
+
+message FormInputRegexValidation {
+  optional string regexErrorMessage = 1;
+  optional string regex = 2;
+}
+
+message AddressFormField {
+  optional int32 type = 1;
+}
+
+message DeviceCreateInstrumentMetadata {
+  optional string instrumentType = 1;
+  optional int32 flowType = 2;
+}
+
+message TextFormInput {
+  optional string plaintextResponse = 1;
+  optional PaypalAuthResponse paypalAuthResponse = 2;
+}
+
+message TosAcceptanceFormInput {
+  optional string tosId = 1;
+}
+
+message UsernamePasswordForm {
+  optional TextFormField usernameField = 1;
+  optional TextFormField passwordField = 2;
+  optional TosFormField tosField = 3;
+  optional string actionTitleText = 4;
+  optional string helpUrl = 6;
+  optional Common.Image logoImage = 7;
+}
+
+message CreateInstrumentFlowOption {
+  optional CreateInstrumentFlowHandle initialFlowHandle = 1;
+  optional int32 apiMinVersion = 2;
+  optional int32 apiMaxVersion = 3;
+}
+
+message TosFormField {
+  optional string tosId = 1;
+  optional string tosHtml = 2;
+  optional string tosHtmlShort = 3;
+  optional string tosUrl = 4;
+}
+
+message CreateInstrumentFlowHandle {
+  optional string instrumentType = 1;
+  optional bytes flowHandle = 2;
+  optional int32 flowType = 3;
+  optional int32 apiVersion = 4;
+}
+
+message AddressFormInput {
+  optional BillingAddress.Address address = 1;
+  optional int32 addressType = 2;
+}
+
+message ProfileForm {
+  optional AddressFormField addressField = 1;
+  optional TosFormField tosField = 2;
+}
+
+message ProfileFormInput {
+  optional AddressFormInput customerAddress = 1;
+  optional TosAcceptanceFormInput tos = 2;
+}
+
+message TextFormField {
+  optional string label = 1;
+  optional int32 contentType = 2;
+  optional ResponseFormat responseFormat = 3;
+  optional FormInputRegexValidation regexValidation = 4;
+  optional string errorMessage = 5;
+  optional string defaultValue = 6;
+  optional bool useBestGuess = 7;
+}
+
+message DeviceCreateInstrumentFlowState {
+  optional DeviceCreateInstrumentFlowHandle handle = 1;
+  optional ProfileForm profileForm = 2;
+  optional UsernamePasswordForm usernamePasswordForm = 3;
+}
+
+message PaypalAuthResponse {
+  optional bytes encryptedAuthMessage = 1;
+  optional string hashedDeviceId = 2;
+}
+
+message UsernamePasswordFormInput {
+  optional TextFormInput username = 1;
+  optional TextFormInput password = 2;
+  optional TosAcceptanceFormInput tos = 3;
+}
+
+message DeviceCreateInstrumentFlowHandle {
+  optional bytes token = 1;
+}
+

@@ -1,0 +1,30 @@
+syntax = "proto2";
+
+package Search;
+
+option java_outer_classname = "Search";
+option java_package = "com.google.android.finsky.protos";
+
+import "document_v2.proto";
+import "doc_list.proto";
+
+message RelatedSearch {
+  optional string searchUrl = 1;
+  optional string header = 2;
+  optional int32 backendId = 3;
+  optional int32 docType = 4;
+  optional bool current = 5;
+}
+
+message SearchResponse {
+  optional string originalQuery = 1;
+  optional string suggestedQuery = 2;
+  optional bool aggregateQuery = 3;
+  repeated DocList.Bucket bucket = 4;
+  repeated DocumentV2.DocV2 doc = 5;
+  repeated RelatedSearch relatedSearch = 6;
+  optional bytes serverLogsCookie = 7;
+  optional bool fullPageReplaced = 8;
+  optional bool containsSnow = 9;
+}
+

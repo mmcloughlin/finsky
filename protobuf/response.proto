@@ -1,0 +1,108 @@
+syntax = "proto2";
+
+package Response;
+
+option java_outer_classname = "Response";
+option java_package = "com.google.android.finsky.protos";
+
+import "early_update.proto";
+import "debug_settings.proto";
+import "my_account.proto";
+import "details.proto";
+import "browse.proto";
+import "modify_library.proto";
+import "plus_one.proto";
+import "search_suggest.proto";
+import "preloads.proto";
+import "response_messages.proto";
+import "content_filters.proto";
+import "delivery.proto";
+import "doc_list.proto";
+import "toc.proto";
+import "notifications.proto";
+import "upload_device_config.proto";
+import "promo_code.proto";
+import "user_activity.proto";
+import "library_replication.proto";
+import "consume_purchase_response.proto";
+import "targeting.proto";
+import "restore.proto";
+import "purchase.proto";
+import "revoke_response.proto";
+import "rev.proto";
+import "content_flagging.proto";
+import "search.proto";
+import "challenge_action.proto";
+import "log.proto";
+import "check_promo_offer.proto";
+import "buy.proto";
+import "carrier_billing.proto";
+import "rate_suggested_content_response.proto";
+import "resolve_link.proto";
+import "buy_instruments.proto";
+import "plus_profile.proto";
+import "self_update.proto";
+import "tos.proto";
+import "ack_notification.proto";
+
+message Payload {
+  optional DocList.ListResponse listResponse = 1;
+  optional Details.DetailsResponse detailsResponse = 2;
+  optional Rev.ReviewResponse reviewResponse = 3;
+  optional Buy.BuyResponse buyResponse = 4;
+  optional Search.SearchResponse searchResponse = 5;
+  optional Toc.TocResponse tocResponse = 6;
+  optional Browse.BrowseResponse browseResponse = 7;
+  optional Buy.PurchaseStatusResponse purchaseStatusResponse = 8;
+  optional BuyInstruments.UpdateInstrumentResponse updateInstrumentResponse = 9;
+  optional Log.LogResponse logResponse = 10;
+  optional BuyInstruments.CheckInstrumentResponse checkInstrumentResponse = 11;
+  optional PlusOne.PlusOneResponse plusOneResponse = 12;
+  optional ContentFlagging.FlagContentResponse flagContentResponse = 13;
+  optional AckNotification.AckNotificationResponse ackNotificationResponse = 14;
+  optional CarrierBilling.InitiateAssociationResponse initiateAssociationResponse = 15;
+  optional CarrierBilling.VerifyAssociationResponse verifyAssociationResponse = 16;
+  optional LibraryReplication.LibraryReplicationResponse libraryReplicationResponse = 17;
+  optional RevokeResponse.RevokeResponse revokeResponse = 18;
+  optional Details.BulkDetailsResponse bulkDetailsResponse = 19;
+  optional ResolveLink.ResolvedLink resolveLinkResponse = 20;
+  optional Delivery.DeliveryResponse deliveryResponse = 21;
+  optional Tos.AcceptTosResponse acceptTosResponse = 22;
+  optional RateSuggestedContentResponse.RateSuggestedContentResponse rateSuggestedContentResponse = 23;
+  optional CheckPromoOffer.CheckPromoOfferResponse checkPromoOfferResponse = 24;
+  optional BuyInstruments.InstrumentSetupInfoResponse instrumentSetupInfoResponse = 25;
+  optional BuyInstruments.RedeemGiftCardResponse redeemGiftCardResponse = 26;
+  optional ModifyLibrary.ModifyLibraryResponse modifyLibraryResponse = 27;
+  optional UploadDeviceConfig.UploadDeviceConfigResponse uploadDeviceConfigResponse = 28;
+  optional PlusProfile.PlusProfileResponse plusProfileResponse = 29;
+  optional ConsumePurchaseResponse.ConsumePurchaseResponse consumePurchaseResponse = 30;
+  optional BuyInstruments.BillingProfileResponse billingProfileResponse = 31;
+  optional Purchase.PreparePurchaseResponse preparePurchaseResponse = 32;
+  optional Purchase.CommitPurchaseResponse commitPurchaseResponse = 33;
+  optional DebugSettings.DebugSettingsResponse debugSettingsResponse = 34;
+  optional BuyInstruments.CheckIabPromoResponse checkIabPromoResponse = 35;
+  optional UserActivity.UserActivitySettingsResponse userActivitySettingsResponse = 36;
+  optional UserActivity.RecordUserActivityResponse recordUserActivityResponse = 37;
+  optional PromoCode.RedeemCodeResponse redeemCodeResponse = 38;
+  optional SelfUpdate.SelfUpdateResponse selfUpdateResponse = 39;
+  optional SearchSuggest.SearchSuggestResponse searchSuggestResponse = 40;
+  optional BuyInstruments.GetInitialInstrumentFlowStateResponse getInitialInstrumentFlowStateResponse = 41;
+  optional BuyInstruments.CreateInstrumentResponse createInstrumentResponse = 42;
+  optional ChallengeAction.ChallengeResponse challengeResponse = 43;
+  optional Restore.GetBackupDeviceChoicesResponse backupDeviceChoicesResponse = 44;
+  optional Restore.GetBackupDocumentChoicesResponse backupDocumentChoicesResponse = 45;
+  optional EarlyUpdate.EarlyUpdateResponse earlyUpdateResponse = 46;
+  optional Preloads.PreloadsResponse preloadsResponse = 47;
+  optional MyAccount.MyAccountResponse myAccountResponse = 48;
+  optional ContentFilters.ContentFilterSettingsResponse contentFilterResponse = 49;
+}
+
+message ResponseWrapper {
+  optional Payload payload = 1;
+  optional ResponseMessages.ServerCommands commands = 2;
+  repeated ResponseMessages.PreFetch preFetch = 3;
+  repeated Notifications.Notification notification = 4;
+  optional ResponseMessages.ServerMetadata serverMetadata = 5;
+  optional Targeting.Targets targets = 6;
+}
+

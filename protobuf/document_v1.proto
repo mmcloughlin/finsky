@@ -1,0 +1,54 @@
+syntax = "proto2";
+
+package DocumentV1;
+
+option java_outer_classname = "DocumentV1";
+option java_package = "com.google.android.finsky.protos";
+
+import "doc_details.proto";
+import "rating.proto";
+import "document_v2.proto";
+import "common.proto";
+import "filter_rules.proto";
+
+message OBSOLETE_FinskyTranslatedText {
+  optional string text = 1;
+  optional string sourceLocale = 2;
+  optional string targetLocale = 3;
+}
+
+message OBSOLETE_FinskyDoc {
+  optional Common.Docid docid = 1;
+  optional Common.Docid fetchDocid = 2;
+  optional Common.Docid sampleDocid = 3;
+  optional string title = 4;
+  optional string url = 5;
+  optional Common.Offer priceDeprecated = 7;
+  optional FilterRules.Availability availability = 9;
+  repeated Common.Image image = 10;
+  repeated DocumentV1.OBSOLETE_FinskyDoc child = 11;
+  optional Rating.AggregateRating aggregateRating = 13;
+  repeated Common.Offer offer = 14;
+  repeated OBSOLETE_FinskyTranslatedText translatedSnippet = 15;
+}
+
+message DocV1 {
+  optional OBSOLETE_FinskyDoc finskyDoc = 1;
+  optional string docid = 2;
+  optional string detailsUrl = 3;
+  optional string reviewsUrl = 4;
+  optional string relatedListUrl = 5;
+  optional string moreByListUrl = 6;
+  optional string shareUrl = 7;
+  optional string creator = 8;
+  optional DocDetails.DocumentDetails details = 9;
+  optional string descriptionHtml = 10;
+  optional string relatedBrowseUrl = 11;
+  optional string moreByBrowseUrl = 12;
+  optional string relatedHeader = 13;
+  optional string moreByHeader = 14;
+  optional string title = 15;
+  optional DocumentV2.PlusOneData plusOneData = 16;
+  optional string warningMessage = 17;
+}
+

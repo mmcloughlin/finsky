@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package AckNotification;
+
+option java_outer_classname = "AckNotification";
+option java_package = "com.google.android.finsky.protos";
+
+
+message AckNotificationResponse {
+}
+

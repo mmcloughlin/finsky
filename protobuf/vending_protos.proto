@@ -1,0 +1,271 @@
+syntax = "proto2";
+
+package VendingProtos;
+
+option java_outer_classname = "VendingProtos";
+option java_package = "com.google.android.finsky.protos";
+
+import "device_configuration_proto.proto";
+import "notifications.proto";
+import "common_device.proto";
+
+message PurchaseMetadataRequestProto {
+}
+
+message ResponseProto {
+  message Response {
+    optional ResponsePropertiesProto responseProperties = 2;
+    optional ModifyCommentResponseProto modifyCommentResponse = 5;
+    optional ContentSyncResponseProto contentSyncResponse = 8;
+    optional GetAssetResponseProto getAssetResponse = 9;
+    optional PurchaseMetadataResponseProto purchaseMetadataResponse = 12;
+    optional CheckLicenseResponseProto checkLicenseResponse = 17;
+    optional GetMarketMetadataResponseProto getMarketMetadataResponse = 18;
+    optional RestoreApplicationsResponseProto restoreApplicationResponse = 23;
+    optional BillingEventResponseProto billingEventResponse = 25;
+    optional InAppRestoreTransactionsResponseProto inAppRestoreTransactionsResponse = 30;
+    optional InAppPurchaseInformationResponseProto inAppPurchaseInformationResponse = 31;
+    optional AckNotificationsResponseProto ackNotificationsResponse = 33;
+  }
+
+  repeated Response response = 1;
+  optional PendingNotificationsProto pendingNotifications = 38;
+}
+
+message InAppRestoreTransactionsResponseProto {
+  optional SignedDataProto signedResponse = 1;
+  optional PurchaseResultProto purchaseResult = 2;
+}
+
+message CheckLicenseRequestProto {
+  optional string packageName = 1;
+  optional int32 versionCode = 2;
+  optional int64 nonce = 3;
+}
+
+message RequestProto {
+  message Request {
+    optional ModifyCommentRequestProto modifyCommentRequest = 6;
+    optional ContentSyncRequestProto contentSyncRequest = 9;
+    optional PurchaseMetadataRequestProto purchaseMetadataRequest = 13;
+    optional CheckLicenseRequestProto checkLicenseRequest = 18;
+    optional RestoreApplicationsRequestProto restoreApplicationsRequest = 24;
+    optional BillingEventRequestProto billingEventRequest = 26;
+    optional InAppRestoreTransactionsRequestProto inAppRestoreTransactionsRequest = 31;
+    optional InAppPurchaseInformationRequestProto inAppPurchaseInformationRequest = 32;
+    optional CheckForNotificationsRequestProto checkForNotificationsRequest = 33;
+    optional AckNotificationsRequestProto ackNotificationsRequest = 34;
+  }
+
+  optional RequestPropertiesProto requestProperties = 1;
+  repeated Request request = 2;
+}
+
+message BillingEventResponseProto {
+}
+
+message RequestPropertiesProto {
+  optional string userAuthToken = 1;
+  optional bool userAuthTokenSecure = 2;
+  optional int32 softwareVersion = 3;
+  optional string aid = 4;
+  optional string productNameAndVersion = 5;
+  optional string userLanguage = 6;
+  optional string userCountry = 7;
+  optional string operatorName = 8;
+  optional string simOperatorName = 9;
+  optional string operatorNumericName = 10;
+  optional string simOperatorNumericName = 11;
+  optional string clientId = 12;
+  optional string loggingId = 13;
+}
+
+message RestoreApplicationsRequestProto {
+  optional string backupAndroidId = 1;
+  optional string tosVersion = 2;
+  optional DeviceConfigurationProto.DeviceConfigurationProto deviceConfiguration = 3;
+}
+
+message InAppPurchaseInformationResponseProto {
+  optional SignedDataProto signedResponse = 1;
+  repeated StatusBarNotificationProto statusBarNotification = 2;
+  optional PurchaseResultProto purchaseResult = 3;
+}
+
+message GetMarketMetadataResponseProto {
+  optional int32 latestClientVersionCode = 1;
+}
+
+message ContentSyncResponseProto {
+  optional int32 numUpdatesAvailable = 1;
+}
+
+message ResponsePropertiesProto {
+  optional int32 result = 1;
+}
+
+message FileMetadataProto {
+  optional int32 fileType = 1;
+  optional int32 versionCode = 2;
+  optional int64 size = 3;
+  optional string downloadUrl = 4;
+}
+
+message CheckForNotificationsRequestProto {
+  optional int64 alarmDuration = 1;
+}
+
+message RestoreApplicationsResponseProto {
+  repeated GetAssetResponseProto asset = 1;
+}
+
+message PurchaseResultProto {
+  optional int32 resultCode = 1;
+  optional string resultCodeMessage = 2;
+}
+
+message StatusBarNotificationProto {
+  optional string tickerText = 1;
+  optional string contentTitle = 2;
+  optional string contentText = 3;
+  optional int32 severity = 4;
+}
+
+message ModifyCommentResponseProto {
+}
+
+message AppDataProto {
+  optional string key = 1;
+  optional string value = 2;
+}
+
+message BillingEventRequestProto {
+  optional int32 eventType = 1;
+  optional string billingParametersId = 2;
+  optional bool resultSuccess = 3;
+  optional string clientMessage = 4;
+}
+
+message InAppRestoreTransactionsRequestProto {
+  optional SignatureHashProto signatureHash = 1;
+  optional int64 nonce = 2;
+  optional string signatureAlgorithm = 3;
+  optional int32 billingApiVersion = 4;
+}
+
+message PendingNotificationsProto {
+  repeated DataMessageProto notification = 1;
+  optional int64 nextCheckMillis = 2;
+  repeated Notifications.Notification finskyNotification = 3;
+}
+
+message ContentSyncRequestProto {
+  message SystemApp {
+    optional string packageName = 11;
+    optional int32 versionCode = 12;
+    repeated string certificateHash = 13;
+  }
+
+  message AssetInstallState {
+    optional string assetId = 3;
+    optional int32 assetState = 4;
+    optional int64 installTime = 5;
+    optional int64 uninstallTime = 6;
+    optional string packageName = 7;
+    optional int32 versionCode = 8;
+    optional string assetReferrer = 9;
+  }
+
+  optional bool incremental = 1;
+  repeated AssetInstallState assetInstallState = 2;
+  repeated SystemApp systemApp = 10;
+  optional int32 sideloadedAppCount = 14;
+}
+
+message AckNotificationsResponseProto {
+}
+
+message GetAssetResponseProto {
+  message InstallAsset {
+    optional string assetId = 2;
+    optional string assetName = 3;
+    optional string assetType = 4;
+    optional string assetPackage = 5;
+    optional string blobUrl = 6;
+    optional string assetSignature = 7;
+    optional int64 assetSize = 8;
+    optional int64 refundTimeoutMillis = 9;
+    optional bool forwardLocked = 10;
+    optional bool secured = 11;
+    optional int32 versionCode = 12;
+    optional string downloadAuthCookieName = 13;
+    optional string downloadAuthCookieValue = 14;
+    optional int64 postInstallRefundWindowMillis = 16;
+  }
+
+  optional InstallAsset installAsset = 1;
+  repeated FileMetadataProto additionalFile = 15;
+}
+
+message CheckLicenseResponseProto {
+  optional int32 responseCode = 1;
+  optional string signedData = 2;
+  optional string signature = 3;
+}
+
+message SignedDataProto {
+  optional string signedData = 1;
+  optional string signature = 2;
+}
+
+message InAppPurchaseInformationRequestProto {
+  optional SignatureHashProto signatureHash = 1;
+  optional int64 nonce = 2;
+  repeated string notificationId = 3;
+  optional string signatureAlgorithm = 4;
+  optional int32 billingApiVersion = 5;
+}
+
+message AckNotificationsRequestProto {
+  repeated string notificationId = 1;
+  optional SignatureHashProto signatureHash = 2;
+  repeated string nackNotificationId = 3;
+}
+
+message DataMessageProto {
+  optional string category = 1;
+  repeated AppDataProto appData = 3;
+}
+
+message PurchaseMetadataResponseProto {
+  message Countries {
+    message Country {
+      message InstrumentAddressSpec {
+        optional int32 instrumentFamily = 8;
+        optional CommonDevice.BillingAddressSpec billingAddressSpec = 9;
+      }
+
+      optional string countryCode = 3;
+      optional string countryName = 4;
+      optional bool allowsReducedBillingAddress = 6;
+      repeated InstrumentAddressSpec instrumentAddressSpec = 7;
+    }
+
+    repeated Country country = 2;
+  }
+
+  optional Countries countries = 1;
+}
+
+message SignatureHashProto {
+  optional string packageName = 1;
+  optional int32 versionCode = 2;
+  optional bytes hash = 3;
+}
+
+message ModifyCommentRequestProto {
+  optional string assetId = 1;
+  optional int32 flagType = 5;
+  optional string flagMessage = 6;
+}
+

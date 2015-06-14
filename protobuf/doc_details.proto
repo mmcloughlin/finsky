@@ -1,0 +1,62 @@
+syntax = "proto2";
+
+package DocDetails;
+
+option java_outer_classname = "DocDetails";
+option java_package = "com.google.android.finsky.protos";
+
+import "newsstand_doc_details.proto";
+import "doc_annotations.proto";
+import "common.proto";
+import "app_doc_details.proto";
+import "book_doc_details.proto";
+import "music_doc_details.proto";
+import "video_doc_details.proto";
+
+message ProductDetailsDescription {
+  optional Common.Image image = 1;
+  optional string description = 2;
+}
+
+message PersonDetails {
+  optional bool personIsRequester = 1;
+}
+
+message ProductDetailsSection {
+  optional string title = 1;
+  repeated ProductDetailsDescription description = 3;
+}
+
+message DocumentDetails {
+  optional AppDocDetails.AppDetails appDetails = 1;
+  optional MusicDocDetails.AlbumDetails albumDetails = 2;
+  optional MusicDocDetails.ArtistDetails artistDetails = 3;
+  optional MusicDocDetails.SongDetails songDetails = 4;
+  optional BookDocDetails.BookDetails bookDetails = 5;
+  optional VideoDocDetails.VideoDetails videoDetails = 6;
+  optional AppDocDetails.SubscriptionDetails subscriptionDetails = 7;
+  optional NewsstandDocDetails.MagazineDetails magazineDetails = 8;
+  optional VideoDocDetails.TvShowDetails tvShowDetails = 9;
+  optional VideoDocDetails.TvSeasonDetails tvSeasonDetails = 10;
+  optional VideoDocDetails.TvEpisodeDetails tvEpisodeDetails = 11;
+  optional PersonDetails personDetails = 12;
+  optional TalentDetails talentDetails = 13;
+  optional AppDocDetails.DeveloperDetails developerDetails = 14;
+}
+
+message TalentExternalLinks {
+  repeated DocAnnotations.Link websiteUrl = 1;
+  optional DocAnnotations.Link googlePlusProfileUrl = 2;
+  optional DocAnnotations.Link youtubeChannelUrl = 3;
+}
+
+message TalentDetails {
+  optional TalentExternalLinks externalLinks = 1;
+  optional int32 primaryRoleId = 2;
+}
+
+message ProductDetails {
+  optional string title = 1;
+  repeated ProductDetailsSection section = 2;
+}
+

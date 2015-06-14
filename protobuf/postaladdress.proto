@@ -1,0 +1,31 @@
+syntax = "proto2";
+
+package Postaladdress;
+
+option java_outer_classname = "Postaladdress";
+option java_package = "com.google.location.country";
+
+
+message PostalAddress {
+  optional string countryNameCode = 1;
+  optional string countryName = 2;
+  optional string administrativeAreaName = 3;
+  optional string subAdministrativeAreaName = 4;
+  optional string localityName = 5;
+  optional string thoroughfareName = 6;
+  optional string thoroughfareNumber = 11;
+  optional string postalCodeNumber = 12;
+  optional string postalCodeNumberExtension = 13;
+  repeated string addressLine = 14;
+  optional string premiseName = 15;
+  optional string subPremiseName = 16;
+  optional string dependentLocalityName = 17;
+  optional string dependentThoroughfareName = 21;
+  optional string languageCode = 26;
+  optional string firmName = 27;
+  optional string recipientName = 28;
+  optional string sortingCode = 29;
+  optional string postBoxNumber = 30;
+  optional string emailAddress = 1150;
+}
+

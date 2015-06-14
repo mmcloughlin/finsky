@@ -1,0 +1,31 @@
+syntax = "proto2";
+
+package BillingProfileProtos;
+
+option java_outer_classname = "BillingProfileProtos";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+import "common_device.proto";
+
+message BillingProfile {
+  repeated CommonDevice.Instrument instrument = 1;
+  optional string selectedExternalInstrumentId = 2;
+  repeated BillingProfileOption billingProfileOption = 3;
+  optional bytes paymentsIntegratorCommonToken = 6;
+  optional Common.Image remindMeLaterIconImage = 7;
+}
+
+message BillingProfileOption {
+  optional int32 type = 1;
+  optional string displayTitle = 2;
+  optional string externalInstrumentId = 3;
+  optional CommonDevice.TopupInfo topupInfo = 4;
+  optional CommonDevice.CarrierBillingInstrumentStatus carrierBillingInstrumentStatus = 5;
+  optional CommonDevice.GenericInstrument genericInstrument = 6;
+  optional bytes paymentsIntegratorInstrumentToken = 7;
+  optional Common.Image iconImage = 8;
+  optional bytes serverLogsCookie = 9;
+  optional string typeName = 10;
+}
+

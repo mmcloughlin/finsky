@@ -1,0 +1,73 @@
+syntax = "proto2";
+
+package Details;
+
+option java_outer_classname = "Details";
+option java_package = "com.google.android.finsky.protos";
+
+import "document_v2.proto";
+import "doc_annotations.proto";
+import "document_v1.proto";
+import "common.proto";
+
+message FamilyCategoryBadge {
+}
+
+message PlayerBadge {
+  optional Common.Image overlayIcon = 1;
+}
+
+message BulkDetailsResponse {
+  repeated BulkDetailsEntry entry = 1;
+}
+
+message DiscoveryBadge {
+  optional string title = 1;
+  optional Common.Image image = 2;
+  optional int32 backgroundColor = 3;
+  optional DiscoveryBadgeLink discoveryBadgeLink = 4;
+  optional bytes serverLogsCookie = 5;
+  optional bool isPlusOne = 6;
+  optional float aggregateRating = 7;
+  optional int32 userStarRating = 8;
+  optional string downloadCount = 9;
+  optional string downloadUnits = 10;
+  optional string contentDescription = 11;
+  optional PlayerBadge playerBadge = 12;
+  optional FamilyAgeRangeBadge familyAgeRangeBadge = 13;
+  optional FamilyCategoryBadge familyCategoryBadge = 14;
+}
+
+message BulkDetailsEntry {
+  optional DocumentV2.DocV2 doc = 1;
+}
+
+message FamilyAgeRangeBadge {
+}
+
+message BulkDetailsRequest {
+  repeated string docid = 1;
+  optional bool includeChildDocs = 2;
+  optional bool includeDetails = 3;
+  optional string sourcePackageName = 4;
+  optional bool includeSplitDetailsForAllApps = 5;
+  optional bool includeSplitDetailsForNewerVersions = 6;
+  repeated int32 installedVersionCode = 7;
+}
+
+message DetailsResponse {
+  optional DocumentV1.DocV1 docV1 = 1;
+  optional string analyticsCookie = 2;
+  optional DocumentV2.Review userReview = 3;
+  optional DocumentV2.DocV2 docV2 = 4;
+  optional string footerHtml = 5;
+  optional bytes serverLogsCookie = 6;
+  repeated DiscoveryBadge discoveryBadge = 7;
+}
+
+message DiscoveryBadgeLink {
+  optional DocAnnotations.Link link = 1;
+  optional string userReviewsUrl = 2;
+  optional string criticReviewsUrl = 3;
+}
+

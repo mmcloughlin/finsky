@@ -1,0 +1,40 @@
+syntax = "proto2";
+
+package ContentFilters;
+
+option java_outer_classname = "ContentFilters";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message ContentFilterSettingsResponse {
+  repeated FilterRange filterRange = 1;
+  optional string tutorialText = 2;
+  optional Common.Image tutorialImageFife = 3;
+  optional string infoTitle = 4;
+  optional string infoText = 5;
+}
+
+message FilterRange {
+  repeated int32 documentType = 1;
+  optional int32 authorityId = 2;
+  repeated FilterChoice filterChoice = 3;
+  optional string label = 4;
+  optional Common.Image iconFife = 5;
+  optional string selectionDialogLabel = 6;
+  optional string confirmationDialogTitle = 7;
+  optional string confirmationDialogContent = 8;
+  optional bool representChoiceAsToggle = 9;
+  optional string appPackageName = 10;
+  optional int32 minVersionCode = 11;
+}
+
+message FilterChoice {
+  optional int32 level = 1;
+  optional Common.Image imageFife = 2;
+  optional string label = 3;
+  optional string dfeHeaderValue = 4;
+  optional bool selected = 5;
+  optional string labelSummary = 6;
+}
+

@@ -1,0 +1,31 @@
+syntax = "proto2";
+
+package Ownership;
+
+option java_outer_classname = "Ownership";
+option java_package = "com.google.android.finsky.protos";
+
+import "voucher.proto";
+import "group_license.proto";
+import "common.proto";
+
+message OwnershipInfo {
+  optional int64 initiationTimestampMsec = 1;
+  optional int64 validUntilTimestampMsec = 2;
+  optional bool autoRenewing = 3;
+  optional int64 refundTimeoutTimestampMsec = 4;
+  optional int64 postDeliveryRefundWindowMsec = 5;
+  optional Common.SignedData developerPurchaseInfo = 6;
+  optional bool preordered = 7;
+  optional bool hidden = 8;
+  optional Common.RentalTerms rentalTerms = 9;
+  optional GroupLicense.GroupLicenseInfo groupLicenseInfo = 10;
+  optional Common.LicensedDocumentInfo licensedDocumentInfo = 11;
+  optional int32 quantity = 12;
+  optional int64 libraryExpirationTimestampMsec = 14;
+  optional Voucher.LibraryVoucher libraryVoucher = 15;
+  optional Common.Docid bundleDocid = 16;
+  optional bool bonus = 17;
+  optional int64 storedValidUntilTimestampMsec = 18;
+}
+

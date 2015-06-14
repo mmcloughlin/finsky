@@ -1,0 +1,58 @@
+syntax = "proto2";
+
+package LibraryUpdateProto;
+
+option java_outer_classname = "LibraryUpdateProto";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message LibraryInAppDetails {
+  optional string signedPurchaseData = 1;
+  optional string signature = 2;
+}
+
+message LibrarySubscriptionDetails {
+  optional int64 initiationTimestampMsec = 1;
+  optional int64 deprecatedValidUntilTimestampMsec = 2;
+  optional bool autoRenewing = 3;
+  optional int64 trialUntilTimestampMsec = 4;
+  optional string signedPurchaseData = 5;
+  optional string signature = 6;
+}
+
+message LibraryMutation {
+  optional Common.Docid docid = 1;
+  optional int32 offerType = 2;
+  optional int64 documentHash = 3;
+  optional bool deleted = 4;
+  optional LibraryAppDetails appDetails = 5;
+  optional LibrarySubscriptionDetails subscriptionDetails = 6;
+  optional LibraryInAppDetails inAppDetails = 7;
+  optional int64 validUntilTimestampMsec = 8;
+  optional bool preordered = 9;
+}
+
+message LibraryUpdate {
+  optional int32 status = 1;
+  optional int32 corpus = 2;
+  optional bytes serverToken = 3;
+  repeated LibraryMutation mutation = 4;
+  optional bool hasMore = 5;
+  optional string libraryId = 6;
+}
+
+message LibraryAppDetails {
+  repeated string certificateHash = 2;
+  optional int64 refundTimeoutTimestampMsec = 3;
+  optional int64 postDeliveryRefundWindowMsec = 4;
+}
+
+message ClientLibraryState {
+  optional int32 corpus = 1;
+  optional bytes serverToken = 2;
+  optional int64 hashCodeSum = 3;
+  optional int32 librarySize = 4;
+  optional string libraryId = 5;
+}
+

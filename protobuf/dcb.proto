@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package Dcb;
+
+option java_outer_classname = "Dcb";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.components.instrument.types";
+
+import "legal_message_outer_class.proto";
+
+message DcbVerifyAssociationForm {
+  optional string smsPhoneNumber = 1;
+  optional string smsMessage = 2;
+  optional LegalMessageOuterClass.LegalMessage requiredMessage = 3;
+}
+
+message DcbVerifyAssociationFormValue {
+  optional string legalDocData = 1;
+}
+

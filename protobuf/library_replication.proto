@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package LibraryReplication;
+
+option java_outer_classname = "LibraryReplication";
+option java_package = "com.google.android.finsky.protos";
+
+import "library_update_proto.proto";
+
+message LibraryReplicationResponse {
+  repeated LibraryUpdateProto.LibraryUpdate update = 1;
+  repeated string autoAcquireFreeAppIfHigherVersionAvailableTag = 2;
+}
+
+message LibraryReplicationRequest {
+  repeated LibraryUpdateProto.ClientLibraryState libraryState = 1;
+}
+

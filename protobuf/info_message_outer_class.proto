@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package InfoMessageOuterClass;
+
+option java_outer_classname = "InfoMessageOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.generic";
+
+
+message InfoMessage {
+  optional string messageHtml = 1;
+  optional string detailedMessageHtml = 2;
+  optional string showDetailedMessageLabel = 3;
+  optional int32 uiReference = 4;
+}
+

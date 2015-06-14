@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package ModifyLibrary;
+
+option java_outer_classname = "ModifyLibrary";
+option java_package = "com.google.android.finsky.protos";
+
+import "library_update_proto.proto";
+
+message ModifyLibraryResponse {
+  optional LibraryUpdateProto.LibraryUpdate libraryUpdate = 1;
+}
+
+message ModifyLibraryRequest {
+  optional string libraryId = 1;
+  repeated string forAddDocid = 2;
+  repeated string forRemovalDocid = 3;
+  repeated string forArchiveDocid = 4;
+}
+

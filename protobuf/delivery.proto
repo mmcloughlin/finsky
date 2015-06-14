@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package Delivery;
+
+option java_outer_classname = "Delivery";
+option java_package = "com.google.android.finsky.protos";
+
+import "android_app_delivery.proto";
+
+message DeliveryResponse {
+  optional int32 status = 1;
+  optional AndroidAppDelivery.AndroidAppDeliveryData appDeliveryData = 2;
+}
+

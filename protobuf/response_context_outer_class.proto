@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package ResponseContextOuterClass;
+
+option java_outer_classname = "ResponseContextOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common";
+
+
+message ResponseContext {
+  optional int64 responseTimeMillis = 1;
+  optional bytes sessionData = 2;
+  optional bytes logToken = 5;
+  optional string requestId = 6;
+}
+

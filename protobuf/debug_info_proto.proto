@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package DebugInfoProto;
+
+option java_outer_classname = "DebugInfoProto";
+option java_package = "com.google.android.finsky.protos";
+
+
+message DebugInfo {
+  message Timing {
+    optional string name = 3;
+    optional double timeInMs = 4;
+  }
+
+  repeated string message = 1;
+  repeated Timing timing = 2;
+}
+

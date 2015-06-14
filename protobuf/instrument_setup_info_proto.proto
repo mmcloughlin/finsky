@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package InstrumentSetupInfoProto;
+
+option java_outer_classname = "InstrumentSetupInfoProto";
+option java_package = "com.google.android.finsky.protos";
+
+import "challenge_proto.proto";
+import "common_device.proto";
+
+message InstrumentSetupInfo {
+  optional int32 instrumentFamily = 1;
+  optional bool supported = 2;
+  optional ChallengeProto.AddressChallenge addressChallenge = 3;
+  optional CommonDevice.Money balance = 4;
+  repeated string footerHtml = 5;
+}
+

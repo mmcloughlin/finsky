@@ -1,0 +1,57 @@
+syntax = "proto2";
+
+package DocAnnotations;
+
+option java_outer_classname = "DocAnnotations";
+option java_package = "com.google.android.finsky.protos";
+
+import "resolve_link.proto";
+import "common.proto";
+
+message PurchaseHistoryDetails {
+  optional int64 purchaseTimestampMsec = 2;
+  optional string purchaseDetailsHtml = 3;
+  optional Common.Offer offer = 5;
+  optional string purchaseStatus = 6;
+}
+
+message Badge {
+  optional string title = 1;
+  repeated Common.Image image = 2;
+  optional string browseUrl = 3;
+  optional string description = 4;
+  optional string textInTitleSection = 5;
+  optional Common.Image expandedBadgeImage = 6;
+}
+
+message SectionMetadata {
+  optional string header = 1;
+  optional string listUrl = 2;
+  optional string browseUrl = 3;
+  optional string descriptionHtml = 4;
+}
+
+message PromotedDoc {
+  optional string title = 1;
+  optional string subtitle = 2;
+  repeated Common.Image image = 3;
+  optional string descriptionHtml = 4;
+  optional string detailsUrl = 5;
+}
+
+message Link {
+  optional string uri = 1;
+  optional ResolveLink.ResolvedLink resolvedLink = 2;
+  optional int32 uriBackend = 3;
+}
+
+message Warning {
+  optional string localizedMessage = 1;
+}
+
+message BadgeContainer {
+  optional string title = 1;
+  repeated Common.Image image = 2;
+  repeated Badge badge = 3;
+}
+

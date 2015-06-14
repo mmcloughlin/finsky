@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package EncryptedSubscriberInfo;
+
+option java_multiple_files = true;
+option java_outer_classname = "EncryptedSubscriberInfo";
+option java_package = "com.google.android.finsky.protos";
+
+
+message EncryptedSubscriberInfo {
+  optional string data = 1;
+  optional string encryptedKey = 2;
+  optional string signature = 3;
+  optional string initVector = 4;
+  optional int32 googleKeyVersion = 5;
+  optional int32 carrierKeyVersion = 6;
+}
+

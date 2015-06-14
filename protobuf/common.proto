@@ -1,0 +1,164 @@
+syntax = "proto2";
+
+package Common;
+
+option java_outer_classname = "Common";
+option java_package = "com.google.android.finsky.protos";
+
+
+message VoucherOfferTerms {
+  repeated Docid voucherDocid = 1;
+  optional int64 voucherPriceMicros = 2;
+  optional string voucherFormattedAmount = 3;
+}
+
+message TimePeriod {
+  optional int32 unit = 1;
+  optional int32 count = 2;
+}
+
+message Docid {
+  optional string backendDocid = 1;
+  optional int32 type = 2;
+  optional int32 backend = 3;
+}
+
+message Offer {
+  optional int64 micros = 1;
+  optional string currencyCode = 2;
+  optional string formattedAmount = 3;
+  repeated Common.Offer convertedPrice = 4;
+  optional bool checkoutFlowRequired = 5;
+  optional int64 fullPriceMicros = 6;
+  optional string formattedFullAmount = 7;
+  optional int32 offerType = 8;
+  optional RentalTerms rentalTerms = 9;
+  optional int64 onSaleDate = 10;
+  repeated string promotionLabel = 11;
+  optional SubscriptionTerms subscriptionTerms = 12;
+  optional string formattedName = 13;
+  optional string formattedDescription = 14;
+  optional bool preorder = 15;
+  optional int32 onSaleDateDisplayTimeZoneOffsetMsec = 16;
+  optional int32 licensedOfferType = 17;
+  optional SubscriptionContentTerms subscriptionContentTerms = 18;
+  optional string offerId = 19;
+  optional int64 preorderFulfillmentDisplayDate = 20;
+  optional LicenseTerms licenseTerms = 21;
+  optional bool temporarilyFree = 22;
+  optional VoucherOfferTerms voucherTerms = 23;
+}
+
+message Image {
+  message Citation {
+    optional string titleLocalized = 11;
+    optional string url = 12;
+  }
+
+  message Dimension {
+    optional int32 width = 3;
+    optional int32 height = 4;
+    optional int32 aspectRatio = 18;
+  }
+
+  optional int32 imageType = 1;
+  optional Dimension dimension = 2;
+  optional string imageUrl = 5;
+  optional string altTextLocalized = 6;
+  optional string secureUrl = 7;
+  optional int32 positionInSequence = 8;
+  optional bool supportsFifeUrlOptions = 9;
+  optional Citation citation = 10;
+  optional int32 durationSeconds = 14;
+  optional string fillColorRgb = 15;
+  optional bool autogen = 16;
+  optional Attribution attribution = 17;
+  optional string backgroundColorRgb = 19;
+}
+
+message SeasonalSubscriptionInfo {
+  optional MonthAndDay periodStart = 1;
+  optional MonthAndDay periodEnd = 2;
+  optional int32 midSeasonPricingStrategy = 3;
+}
+
+message GroupLicenseKey {
+  optional int64 dasherCustomerId = 1;
+  optional Docid docid = 2;
+  optional int32 licensedOfferType = 3;
+  optional int32 type = 4;
+  optional int32 rentalPeriodDays = 5;
+}
+
+message LicenseTerms {
+  optional GroupLicenseKey groupLicenseKey = 1;
+}
+
+message VoucherId {
+  optional Docid voucherDocid = 1;
+  optional RedemptionRecordKey key = 2;
+}
+
+message SubscriptionTerms {
+  optional TimePeriod recurringPeriod = 1;
+  optional TimePeriod trialPeriod = 2;
+  optional string formattedPriceWithRecurrencePeriod = 3;
+  optional SeasonalSubscriptionInfo seasonalSubscriptionInfo = 4;
+  repeated Docid replaceDocid = 5;
+  optional TimePeriod gracePeriod = 6;
+  optional bool resignup = 7;
+  optional int64 initialValidUntilTimestampMsec = 8;
+}
+
+message RedemptionRecordKey {
+  optional int64 publisherId = 1;
+  optional int64 campaignId = 2;
+  optional int64 codeGroupId = 3;
+  optional int64 recordId = 4;
+}
+
+message Install {
+  optional int64 androidId = 1;
+  optional int32 version = 2;
+  optional bool bundled = 3;
+  optional bool pending = 4;
+  optional int64 lastUpdateTimestampMillis = 5;
+}
+
+message SubscriptionContentTerms {
+  optional Docid requiredSubscription = 1;
+}
+
+message RentalTerms {
+  optional int32 dEPRECATEDGrantPeriodSeconds = 1;
+  optional int32 dEPRECATEDActivatePeriodSeconds = 2;
+  optional TimePeriod grantPeriod = 3;
+  optional TimePeriod activatePeriod = 4;
+  optional int64 grantEndTimeSeconds = 5;
+}
+
+message Attribution {
+  optional string sourceTitle = 1;
+  optional string sourceUrl = 2;
+  optional string licenseTitle = 3;
+  optional string licenseUrl = 4;
+}
+
+message MonthAndDay {
+  optional int32 month = 1;
+  optional int32 day = 2;
+}
+
+message LicensedDocumentInfo {
+  repeated int64 gaiaGroupId = 1;
+  optional string groupLicenseCheckoutOrderId = 2;
+  optional GroupLicenseKey groupLicenseKey = 3;
+  optional int64 assignedByGaiaId = 4;
+  optional string dEPRECATEDAssignmentId = 5;
+}
+
+message SignedData {
+  optional string signedData = 1;
+  optional string signature = 2;
+}
+

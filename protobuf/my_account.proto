@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package MyAccount;
+
+option java_outer_classname = "MyAccount";
+option java_package = "com.google.android.finsky.protos";
+
+import "doc_annotations.proto";
+
+message MyAccountResponse {
+  optional DocAnnotations.SectionMetadata purchaseHistoryMetadata = 1;
+  optional DocAnnotations.SectionMetadata subscriptionsMetadata = 2;
+}
+

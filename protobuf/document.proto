@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package Document;
+
+option java_outer_classname = "Document";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message PlayDocument {
+  optional Common.Docid docid = 1;
+  optional string docidStr = 2;
+  optional string title = 3;
+  optional string subtitle = 4;
+  repeated Common.Image image = 5;
+  optional string detailsUrl = 6;
+}
+

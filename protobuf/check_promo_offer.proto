@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+package CheckPromoOffer;
+
+option java_outer_classname = "CheckPromoOffer";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message RedeemedPromoOffer {
+  optional string headerText = 1;
+  optional string descriptionHtml = 2;
+  optional Common.Image image = 3;
+}
+
+message AvailablePromoOffer {
+  optional AddCreditCardPromoOffer addCreditCardOffer = 1;
+}
+
+message AddCreditCardPromoOffer {
+  optional string headerText = 1;
+  optional string descriptionHtml = 2;
+  optional Common.Image image = 3;
+  optional string introductoryTextHtml = 4;
+  optional string offerTitle = 5;
+  optional string noActionDescription = 6;
+  optional string termsAndConditionsHtml = 7;
+}
+
+message CheckPromoOfferResponse {
+  repeated AvailablePromoOffer availableOffer = 1;
+  optional RedeemedPromoOffer redeemedOffer = 2;
+  optional bool checkoutTokenRequired = 3;
+  optional int32 availablePromoOfferStatus = 4;
+}
+

@@ -1,0 +1,95 @@
+syntax = "proto2";
+
+package Buy;
+
+option java_outer_classname = "Buy";
+option java_package = "com.google.android.finsky.protos";
+
+import "debug_info_proto.proto";
+import "android_app_delivery.proto";
+import "common.proto";
+import "library_update_proto.proto";
+import "challenge_proto.proto";
+import "common_device.proto";
+
+message Money {
+  optional int64 micros = 1;
+  optional string currencyCode = 2;
+  optional string formattedAmount = 3;
+}
+
+message LineItem {
+  optional string name = 1;
+  optional string description = 2;
+  optional Common.Offer offer = 3;
+  optional Money amount = 4;
+}
+
+message PurchaseStatusResponse {
+  optional int32 status = 1;
+  optional string statusMsg = 2;
+  optional string statusTitle = 3;
+  optional string briefMessage = 4;
+  optional string infoUrl = 5;
+  optional LibraryUpdateProto.LibraryUpdate libraryUpdate = 6;
+  optional CommonDevice.Instrument rejectedInstrument = 7;
+  optional AndroidAppDelivery.AndroidAppDeliveryData appDeliveryData = 8;
+}
+
+message PurchaseNotificationResponse {
+  optional int32 status = 1;
+  optional DebugInfoProto.DebugInfo debugInfo = 2;
+  optional string localizedErrorMessage = 3;
+  optional string purchaseId = 4;
+}
+
+message BuyResponse {
+  message CheckoutInfo {
+    message CheckoutOption {
+      optional string formOfPayment = 6;
+      optional string encodedAdjustedCart = 7;
+      optional string instrumentId = 15;
+      repeated LineItem item = 16;
+      repeated LineItem subItem = 17;
+      optional LineItem total = 18;
+      repeated string footerHtml = 19;
+      optional int32 instrumentFamily = 29;
+      optional bool selectedInstrument = 32;
+      optional LineItem summary = 33;
+      repeated string footnoteHtml = 35;
+      optional CommonDevice.Instrument instrument = 43;
+      optional string purchaseCookie = 45;
+      repeated string disabledReason = 48;
+    }
+
+    optional LineItem item = 3;
+    repeated LineItem subItem = 4;
+    repeated CheckoutOption checkoutOption = 5;
+    optional string deprecatedCheckoutUrl = 10;
+    optional string addInstrumentUrl = 11;
+    repeated string footerHtml = 20;
+    repeated int32 eligibleInstrumentFamily = 31;
+    repeated string footnoteHtml = 36;
+    repeated CommonDevice.Instrument eligibleInstrument = 44;
+  }
+
+  optional PurchaseNotificationResponse purchaseResponse = 1;
+  optional CheckoutInfo checkoutInfo = 2;
+  optional string continueViaUrl = 8;
+  optional string purchaseStatusUrl = 9;
+  optional string checkoutServiceId = 12;
+  optional bool checkoutTokenRequired = 13;
+  optional string baseCheckoutUrl = 14;
+  repeated string tosCheckboxHtml = 37;
+  optional int32 permissionError = 38;
+  optional PurchaseStatusResponse purchaseStatusResponse = 39;
+  optional string purchaseCookie = 46;
+  optional ChallengeProto.Challenge challenge = 49;
+  optional string addInstrumentPromptHtml = 50;
+  optional string confirmButtonText = 51;
+  optional string permissionErrorTitleText = 52;
+  optional string permissionErrorMessageText = 53;
+  optional bytes serverLogsCookie = 54;
+  optional string encodedDeliveryToken = 55;
+}
+

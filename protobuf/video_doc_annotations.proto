@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package VideoDocAnnotations;
+
+option java_outer_classname = "VideoDocAnnotations";
+option java_package = "com.google.android.finsky.protos";
+
+import "common.proto";
+
+message VideoAnnotations {
+  optional bool bundle = 1;
+  optional string bundleContentListUrl = 2;
+  optional string extrasContentListUrl = 3;
+  optional string alsoAvailableInListUrl = 4;
+  repeated Common.Docid bundleDocid = 5;
+}
+

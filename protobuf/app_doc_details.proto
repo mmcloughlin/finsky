@@ -1,0 +1,58 @@
+syntax = "proto2";
+
+package AppDocDetails;
+
+option java_outer_classname = "AppDocDetails";
+option java_package = "com.google.android.finsky.protos";
+
+
+message DeveloperDetails {
+  optional string websiteUrl = 1;
+}
+
+message CertificateSet {
+  repeated string certificateHash = 1;
+}
+
+message AppDetails {
+  optional string developerName = 1;
+  optional int32 majorVersionNumber = 2;
+  optional int32 versionCode = 3;
+  optional string versionString = 4;
+  optional string title = 5;
+  repeated string appCategory = 7;
+  optional int32 contentRating = 8;
+  optional int64 installationSize = 9;
+  repeated string permission = 10;
+  optional string developerEmail = 11;
+  optional string developerWebsite = 12;
+  optional string numDownloads = 13;
+  optional string packageName = 14;
+  optional string recentChangesHtml = 15;
+  optional string uploadDate = 16;
+  repeated FileMetadata file = 17;
+  optional string appType = 18;
+  repeated string certificateHash = 19;
+  optional bool variesByAccount = 21;
+  repeated CertificateSet certificateSet = 22;
+  repeated string autoAcquireFreeAppIfHigherVersionAvailableTag = 23;
+  optional bool declaresIab = 24;
+  repeated string splitId = 25;
+  optional bool gamepadRequired = 26;
+  optional bool externallyHosted = 27;
+  optional bool everExternallyHosted = 28;
+  optional string installNotes = 30;
+  optional int32 installLocation = 31;
+}
+
+message FileMetadata {
+  optional int32 fileType = 1;
+  optional int32 versionCode = 2;
+  optional int64 size = 3;
+  optional string splitId = 4;
+}
+
+message SubscriptionDetails {
+  optional int32 subscriptionPeriod = 1;
+}
+

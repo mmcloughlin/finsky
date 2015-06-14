@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package Tos;
+
+option java_outer_classname = "Tos";
+option java_package = "com.google.android.finsky.protos";
+
+
+message AcceptTosResponse {
+}
+

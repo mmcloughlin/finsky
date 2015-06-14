@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package FormHeaderOuterClass;
+
+option java_outer_classname = "FormHeaderOuterClass";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.components";
+
+
+message FormHeader {
+  optional string id = 1;
+  optional bytes dataToken = 2;
+  optional string title = 4;
+}
+

@@ -1,0 +1,65 @@
+syntax = "proto2";
+
+package DeviceFingerprinting;
+
+option java_multiple_files = true;
+option java_outer_classname = "DeviceFingerprinting";
+option java_package = "paymentfraud.mobile";
+
+
+message DeviceFingerprinting {
+  message Parsed {
+    message State {
+      message Location {
+        optional double altitude = 1;
+        optional double latitude = 2;
+        optional double longitude = 3;
+        optional float accuracy = 4;
+        optional double timeInMs = 5;
+      }
+
+      message PackageInfo {
+        optional string name = 1;
+        optional string versionCode = 2;
+        optional int64 lastUpdateTime = 3;
+        optional int64 firstInstallTime = 4;
+        optional string installLocation = 5;
+      }
+
+      repeated PackageInfo installedPackages = 1;
+      repeated string emailAccounts = 2;
+      optional int32 percentBattery = 3;
+      optional int64 gmtOffsetMillis = 4;
+      optional Location lastGpsLocation = 6;
+      optional bool devModeOn = 7;
+      optional bool nonPlayInstallAllowed = 8;
+      optional string language = 9;
+      repeated string ipAddr = 10;
+      optional string locale = 11;
+      optional string cellOperator = 14;
+      optional string simOperator = 15;
+    }
+
+    message Properties {
+      optional int32 operatingSystem = 1;
+      optional string imei = 2;
+      optional string meid = 3;
+      optional string esn = 5;
+      optional string phoneNumber = 6;
+      optional int64 androidId = 7;
+      optional string deviceName = 9;
+      optional string productName = 10;
+      optional string modelName = 11;
+      optional string manufacturer = 12;
+      optional string buildFingerprint = 13;
+      optional string osVersion = 15;
+      optional string androidBuildBrand = 21;
+    }
+
+    optional Properties properties = 1;
+    optional State state = 2;
+  }
+
+  optional Parsed parsed = 2;
+}
+

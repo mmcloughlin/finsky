@@ -1,0 +1,131 @@
+syntax = "proto2";
+
+package CommonDevice;
+
+option java_outer_classname = "CommonDevice";
+option java_package = "com.google.android.finsky.protos";
+
+import "create_instrument.proto";
+import "billing_address.proto";
+import "encrypted_subscriber_info.proto";
+import "common.proto";
+
+message DisabledInfo {
+  optional int32 disabledReason = 1;
+  optional string disabledMessageHtml = 2;
+  optional string errorMessage = 3;
+}
+
+message CarrierTosEntry {
+  optional string url = 1;
+  optional string version = 2;
+}
+
+message CarrierBillingInstrumentStatus {
+  optional CarrierTos carrierTos = 1;
+  optional bool associationRequired = 2;
+  optional bool passwordRequired = 3;
+  optional PasswordPrompt carrierPasswordPrompt = 4;
+  optional int32 apiVersion = 5;
+  optional string name = 6;
+  optional DeviceAssociation deviceAssociation = 7;
+  optional string carrierSupportPhoneNumber = 8;
+}
+
+message TopupInfo {
+  optional string optionsContainerDocidDeprecated = 1;
+  optional string optionsListUrl = 2;
+  optional string subtitle = 3;
+  optional Common.Docid optionsContainerDocid = 4;
+}
+
+message CarrierBillingCredentials {
+  optional string value = 1;
+  optional int64 expiration = 2;
+}
+
+message CarrierBillingInstrument {
+  optional string instrumentKey = 1;
+  optional string accountType = 2;
+  optional string currencyCode = 3;
+  optional int64 transactionLimit = 4;
+  optional string subscriberIdentifier = 5;
+  optional EncryptedSubscriberInfo.EncryptedSubscriberInfo encryptedSubscriberInfo = 6;
+  optional CarrierBillingCredentials credentials = 7;
+  optional CarrierTos acceptedCarrierTos = 8;
+}
+
+message EfeParam {
+  optional int32 key = 1;
+  optional string value = 2;
+}
+
+message Money {
+  optional int64 micros = 1;
+  optional string currencyCode = 2;
+  optional string formattedAmount = 3;
+}
+
+message DeviceAssociation {
+  optional string userTokenRequestMessage = 1;
+  optional string userTokenRequestAddress = 2;
+}
+
+message Instrument {
+  optional string externalInstrumentId = 1;
+  optional BillingAddress.Address billingAddress = 2;
+  optional CreditCardInstrument creditCard = 3;
+  optional CarrierBillingInstrument carrierBilling = 4;
+  optional BillingAddressSpec billingAddressSpec = 5;
+  optional int32 instrumentFamily = 6;
+  optional CarrierBillingInstrumentStatus carrierBillingStatus = 7;
+  optional string displayTitle = 8;
+  optional TopupInfo topupInfoDeprecated = 9;
+  optional int32 version = 10;
+  optional StoredValueInstrument storedValue = 11;
+  repeated DisabledInfo disabledInfo = 12;
+  optional string statusDescription = 13;
+  optional Common.Image iconImage = 14;
+  optional bytes paymentsIntegratorEditToken = 15;
+  optional string editButtonLabel = 16;
+}
+
+message CreditCardInstrument {
+  optional int32 type = 1;
+  optional string escrowHandle = 2;
+  optional string lastDigits = 3;
+  optional int32 expirationMonth = 4;
+  optional int32 expirationYear = 5;
+  repeated EfeParam escrowEfeParam = 6;
+}
+
+message PasswordPrompt {
+  optional string prompt = 1;
+  optional string forgotPasswordUrl = 2;
+}
+
+message GenericInstrument {
+  repeated CreateInstrument.CreateInstrumentFlowOption createInstrumentFlowOption = 2;
+  optional CreateInstrument.DeviceCreateInstrumentFlowHandle createInstrumentFlowHandle = 3;
+  optional CreateInstrument.DeviceCreateInstrumentMetadata createInstrumentMetadata = 4;
+  optional Common.Image iconImage = 5;
+}
+
+message BillingAddressSpec {
+  optional int32 billingAddressType = 1;
+  repeated int32 requiredField = 2;
+}
+
+message StoredValueInstrument {
+  optional int32 type = 1;
+  optional Money balance = 2;
+  optional TopupInfo topupInfo = 3;
+}
+
+message CarrierTos {
+  optional CarrierTosEntry dcbTos = 1;
+  optional CarrierTosEntry piiTos = 2;
+  optional bool needsDcbTosAcceptance = 3;
+  optional bool needsPiiTosAcceptance = 4;
+}
+

@@ -1,0 +1,83 @@
+syntax = "proto2";
+
+package Api;
+
+option java_outer_classname = "Api";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.instrumentmanager";
+
+import "request_context_outer_class.proto";
+import "ui_error_outer_class.proto";
+import "form_field_reference_outer_class.proto";
+import "image_with_caption_outer_class.proto";
+import "info_message_outer_class.proto";
+import "customer_form_outer_class.proto";
+import "response_context_outer_class.proto";
+import "instrument_form_outer_class.proto";
+import "credit_card.proto";
+
+message InitializeResponse {
+  optional Page initialPage = 4;
+  optional UiErrorOuterClass.UiError error = 5;
+  optional ResponseContextOuterClass.ResponseContext context = 6;
+}
+
+message InstrumentManagerParameters {
+  optional int32 action = 1;
+  optional string cdpBrokerId = 2;
+  optional string currencyCode = 3;
+  optional string country = 4;
+  optional string instrumentId = 5;
+  optional string languageCode = 6;
+  optional bool allowCreditCardCameraInput = 7;
+}
+
+message RefreshPageRequest {
+  optional RequestContextOuterClass.RequestContext context = 1;
+  optional PageValue pageValue = 2;
+  optional FormFieldReferenceOuterClass.FormFieldReference refreshTriggerField = 3;
+}
+
+message SavePageResponse {
+  optional string instrumentId = 1;
+  optional Page nextPage = 2;
+  optional UiErrorOuterClass.UiError error = 3;
+  optional ResponseContextOuterClass.ResponseContext context = 4;
+  optional bool flowComplete = 5;
+}
+
+message SavePageRequest {
+  optional RequestContextOuterClass.RequestContext context = 1;
+  optional InstrumentManagerParameters parameters = 2;
+  optional PageValue pageValue = 4;
+}
+
+message ClientParameters {
+  optional int32 titleIconStyle = 3;
+}
+
+message PageValue {
+  optional CustomerFormOuterClass.CustomerFormValue newCustomer = 1;
+  optional InstrumentFormOuterClass.InstrumentFormValue newInstrument = 2;
+  optional CreditCard.CreditCardExpirationDateFormValue newCreditCardExpirationDate = 3;
+}
+
+message RefreshPageResponse {
+  optional UiErrorOuterClass.UiError error = 1;
+  optional ResponseContextOuterClass.ResponseContext context = 2;
+  optional Page nextPage = 3;
+}
+
+message Page {
+  optional CustomerFormOuterClass.CustomerForm customerForm = 1;
+  optional InstrumentFormOuterClass.InstrumentForm instrumentForm = 2;
+  optional CreditCard.CreditCardExpirationDateForm creditCardExpirationDateForm = 3;
+  optional string title = 4;
+  optional string submitButtonText = 5;
+  repeated FormFieldReferenceOuterClass.FormFieldReference refreshTriggerField = 8;
+  optional string progressDialogText = 9;
+  optional InfoMessageOuterClass.InfoMessage topInfoMessage = 10;
+  optional ImageWithCaptionOuterClass.ImageWithCaption titleImage = 11;
+  optional string progressDialogTitle = 12;
+  optional bool autoSubmit = 13;
+}
+

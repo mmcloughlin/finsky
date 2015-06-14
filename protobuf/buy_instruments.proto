@@ -1,0 +1,75 @@
+syntax = "proto2";
+
+package BuyInstruments;
+
+option java_outer_classname = "BuyInstruments";
+option java_package = "com.google.android.finsky.protos";
+
+import "check_promo_offer.proto";
+import "create_instrument.proto";
+import "instrument_setup_info_proto.proto";
+import "billing_profile_protos.proto";
+import "challenge_proto.proto";
+import "common_device.proto";
+
+message CheckInstrumentResponse {
+  optional bool userHasValidInstrument = 1;
+}
+
+message RedeemGiftCardResponse {
+  optional int32 result = 1;
+  optional string userMessageHtml = 2;
+  optional string balanceHtml = 3;
+  optional ChallengeProto.AddressChallenge addressChallenge = 4;
+  optional bool checkoutTokenRequired = 5;
+}
+
+message InstrumentSetupInfoResponse {
+  repeated InstrumentSetupInfoProto.InstrumentSetupInfo setupInfo = 1;
+  optional bool checkoutTokenRequired = 2;
+}
+
+message CheckIabPromoResponse {
+  optional bool eligible = 1;
+}
+
+message UpdateInstrumentRequest {
+  optional CommonDevice.Instrument instrument = 1;
+  optional string checkoutToken = 2;
+}
+
+message CreateInstrumentResponse {
+  optional int32 result = 1;
+  optional string userMessageHtml = 2;
+  optional string instrumentId = 3;
+  optional CreateInstrument.DeviceCreateInstrumentFlowState createInstrumentFlowState = 4;
+}
+
+message BillingProfileResponse {
+  optional int32 result = 1;
+  optional BillingProfileProtos.BillingProfile billingProfile = 2;
+  optional string userMessageHtml = 3;
+}
+
+message GetInitialInstrumentFlowStateResponse {
+  optional int32 result = 1;
+  optional string userMessageHtml = 2;
+  optional CreateInstrument.DeviceCreateInstrumentFlowState createInstrumentFlowState = 3;
+  optional CreateInstrument.DeviceCreateInstrumentMetadata createInstrumentMetadata = 4;
+}
+
+message UpdateInstrumentResponse {
+  optional int32 result = 1;
+  optional string instrumentId = 2;
+  optional string userMessageHtml = 3;
+  repeated ChallengeProto.InputValidationError errorInputField = 4;
+  optional bool checkoutTokenRequired = 5;
+  optional CheckPromoOffer.RedeemedPromoOffer redeemedOffer = 6;
+}
+
+message CreateInstrumentRequest {
+  optional CreateInstrument.DeviceCreateInstrumentFlowHandle flowHandle = 1;
+  optional CreateInstrument.ProfileFormInput profileFormInput = 2;
+  optional CreateInstrument.UsernamePasswordFormInput usernamePasswordFormInput = 3;
+}
+

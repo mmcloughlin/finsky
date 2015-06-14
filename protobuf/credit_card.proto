@@ -1,0 +1,79 @@
+syntax = "proto2";
+
+package CreditCard;
+
+option java_outer_classname = "CreditCard";
+option java_package = "com.google.commerce.payments.orchestration.proto.ui.common.components.instrument.types";
+
+import "image_with_caption_outer_class.proto";
+import "legal_message_set_outer_class.proto";
+import "address_form_outer_class.proto";
+
+message CreditCardExpirationDateForm {
+  optional string cardLabel = 2;
+  optional int32 cvcLength = 3;
+  optional int32 minMonth = 4;
+  optional int32 minYear = 5;
+  optional int32 maxMonth = 6;
+  optional int32 maxYear = 7;
+  optional string id = 8;
+  optional ImageWithCaptionOuterClass.ImageWithCaption icon = 9;
+  repeated int32 hiddenField = 10;
+  optional ImageWithCaptionOuterClass.ImageWithCaption cvcHintImage = 11;
+  optional string cvcHintText = 12;
+  optional string cvcHintHeader = 13;
+}
+
+message CreditCardForm {
+  optional AddressFormOuterClass.AddressForm billingAddress = 2;
+  optional CreditCardFormValue initialValue = 3;
+  optional LegalMessageSetOuterClass.LegalMessageSet legalMessages = 4;
+  optional string id = 5;
+  repeated CardType allowedCardType = 6;
+  repeated BinRange invalidBin = 7;
+  optional int32 minExpirationMonth = 8;
+  optional int32 minExpirationYear = 9;
+  optional int32 maxExpirationMonth = 10;
+  optional int32 maxExpirationYear = 11;
+  optional bool allowCameraInput = 12;
+  optional string title = 13;
+  optional int32 cameraInputPreference = 15;
+}
+
+message CreditCardFormValue {
+  optional string cardNumber = 1;
+  optional string cvc = 2;
+  optional int32 expirationMonth = 3;
+  optional int32 expirationYear = 4;
+  optional string lastFourDigits = 6;
+  optional string cardholderName = 9;
+  optional AddressFormOuterClass.AddressFormValue billingAddress = 10;
+  optional bytes typeToken = 11;
+  optional string legalDocData = 12;
+  optional string id = 13;
+}
+
+message CardType {
+  repeated BinRange binRange = 1;
+  optional int32 cvcLength = 3;
+  optional bytes typeToken = 4;
+  optional string cvcHintText = 7;
+  optional string cvcHintHeader = 8;
+  optional ImageWithCaptionOuterClass.ImageWithCaption icon = 9;
+  optional ImageWithCaptionOuterClass.ImageWithCaption cvcHintImage = 11;
+}
+
+message BinRange {
+  optional string start = 1;
+  optional string end = 2;
+  optional int32 cardNumberLength = 3;
+  repeated int32 digitGrouping = 4;
+  optional string errorMessage = 5;
+}
+
+message CreditCardExpirationDateFormValue {
+  optional int32 newMonth = 1;
+  optional int32 newYear = 2;
+  optional string cvc = 3;
+}
+

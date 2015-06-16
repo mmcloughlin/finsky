@@ -3,6 +3,12 @@ finsky
 
 Google Play API
 
+Why the name?
+-------------
+
+The word ``finsky`` appears a lot in the Google Play APK source code, so I
+guessed it has some internal significance.
+
 Acknowledgments
 ---------------
 

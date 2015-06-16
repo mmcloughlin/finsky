@@ -1,6 +1,8 @@
 import requests
 import pydash
 
+import protos.response_pb2
+
 BASE_URL = 'https://android.clients.google.com/fdfe/'
 CLIENT_ID = 'am-google'
 
@@ -32,7 +34,11 @@ class Client(object):
                 request_options_common,
                 kwargs,
                 )
-        return requests.get(**options)
+        r = requests.get(**options)
+        r.raise_for_status()
+        data = r.content
+        message = protos.response_pb2.ResponseWrapper.FromString(data)
+        return message
 
     def details(self, doc):
         return self.request('details',

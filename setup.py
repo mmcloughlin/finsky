@@ -19,5 +19,6 @@ setup(name='finsky',
       install_requires=[
           'requests',
           'pydash',
+          'protobuf',
           ],
       )

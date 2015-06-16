@@ -10,7 +10,7 @@ def readme():
 setup(name='finsky',
       version=metadata['version'],
       description='Google Play API',
-      long_desription=readme(),
+      long_description=readme(),
       url='https://github.com/mmcloughlin/finsky',
       author='Michael McLoughlin',
       author_email='mmcloughlin@gmail.com',

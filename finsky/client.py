@@ -35,4 +35,10 @@ class Client(object):
         return requests.get(**options)
 
     def details(self, doc):
-        return self.request('details', params={'doc': doc})
+        return self.request('details',
+                params={
+                    'doc': doc,
+                    },
+                headers={
+                    'X-DFE-No-Prefetch': 'true',
+                    })

@@ -16,4 +16,8 @@ setup(name='finsky',
       author_email='mmcloughlin@gmail.com',
       license='MIT',
       packages=['finsky'],
+      install_requires=[
+          'requests',
+          'pydash',
+          ],
       )

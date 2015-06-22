@@ -49,3 +49,14 @@ class Client(object):
                     'X-DFE-No-Prefetch': 'true',
                     })
         return message.payload.detailsResponse
+
+    def delivery(self, doc, version_code, certificate_hash, offer_type):
+        message = self.request('delivery',
+                params={
+                    'doc': doc,
+                    'vc': version_code,
+                    'ot': offer_type,
+                    'ch': certificate_hash,
+                    },
+                )
+        return message.payload.deliveryResponse

@@ -41,10 +41,11 @@ class Client(object):
         return message
 
     def details(self, doc):
-        return self.request('details',
+        message = self.request('details',
                 params={
                     'doc': doc,
                     },
                 headers={
                     'X-DFE-No-Prefetch': 'true',
                     })
+        return message.payload.detailsResponse

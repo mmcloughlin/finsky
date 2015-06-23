@@ -60,3 +60,18 @@ class Client(object):
                     },
                 )
         return message.payload.deliveryResponse
+
+    def delivery_from_details(self, details_response):
+        """
+        Make a delivery request based on the results of an app details
+        request.
+        """
+        doc = details_response.docV2
+        kwargs = {
+                'doc': doc.docid,
+                'version_code': doc.details.appDetails.versionCode,
+                'certificate_hash':
+                    doc.details.appDetails.certificateSet[0].certificateHash[0],
+                'offer_type': doc.offer[0].offerType,
+                }
+        return self.delivery(**kwargs)

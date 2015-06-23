@@ -5,7 +5,7 @@ finsky
 
 Google Play API
 
-> Still in development. Downloading doesn't always work.
+    Still in development. Downloading doesn't always work.
 
 Why the name?
 -------------

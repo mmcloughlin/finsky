@@ -101,14 +101,14 @@ class Client(object):
         r.raise_for_status()
         return r.content
 
-    def download_from_delivery(self, delivery_response):
+    def download_from_delivery(self, delivery_response, gzipped=False):
         """
         Perform a download given a response from the delivery request.
         """
         data = delivery_response.appDeliveryData
         cookie = data.downloadAuthCookie[0]
         kwargs = {
-                'url': data.downloadUrl,
+                'url': data.gzippedDownloadUrl if gzipped else data.downloadUrl,
                 'cookies': {
                         cookie.name: cookie.value,
                     }

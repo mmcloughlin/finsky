@@ -136,3 +136,19 @@ serverMetadata {
   latencyMillis: 636
 }
 ```
+
+## User-Agent Headers
+
+For finsky requests:
+
+```
+Android-Finsky/5.6.8 (api=3,versionCode=80360800,sdk=19,device=hammerh
+ead,hardware=hammerhead,product=hammerhead,platformVersionRelease=4.4.
+4,model=Nexus%205,buildId=KTU84P,isWideScreen=0)
+```
+
+For download requests on the same phone:
+
+```
+AndroidDownloadManager/4.4.4 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P)
+```

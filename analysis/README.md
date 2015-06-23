@@ -137,6 +137,14 @@ serverMetadata {
 }
 ```
 
+## Downloading
+
+Given a response from the `delivery` endpoint, we can download the file from
+the supplied URL. Note we must set a cookie as instructed in the
+downloadAuthCookie field. Also note the response to this request will be a 302
+redirect, although this should just be handled transparently by the HTTP
+library.
+
 ## User-Agent Headers
 
 For finsky requests:

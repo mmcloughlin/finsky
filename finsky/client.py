@@ -100,3 +100,17 @@ class Client(object):
         r = requests.get(**options)
         r.raise_for_status()
         return r.content
+
+    def download_from_delivery(self, delivery_response):
+        """
+        Perform a download given a response from the delivery request.
+        """
+        data = delivery_response.appDeliveryData
+        cookie = data.downloadAuthCookie[0]
+        kwargs = {
+                'url': data.downloadUrl,
+                'cookies': {
+                        cookie.name: cookie.value,
+                    }
+                }
+        return self.download(**kwargs)

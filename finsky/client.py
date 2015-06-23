@@ -75,3 +75,42 @@ class Client(object):
                 'offer_type': doc.offer[0].offerType,
                 }
         return self.delivery(**kwargs)
+
+    def download(self, url, cookies):
+        """
+        Download file at the given URL with an authentication cookie specified
+        in the cookies dictionary. The authentication cookie is typically
+        called "MarketDA", but the name is specified in the delivery response,
+        so could in principle change.
+        """
+        download_request_options = {
+                'url': url,
+                'headers': {
+                    'User-Agent': 'AndroidDownloadManager/4.4.4 ' +
+                        '(Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P)',
+                    'Accept-Encoding':  'identity',
+                    },
+                'cookies': cookies,
+                'verify': False,
+                }
+        options = pydash.merge({},
+                self.request_options_base,
+                download_request_options,
+                )
+        r = requests.get(**options)
+        r.raise_for_status()
+        return r.content
+
+    def download_from_delivery(self, delivery_response, gzipped=False):
+        """
+        Perform a download given a response from the delivery request.
+        """
+        data = delivery_response.appDeliveryData
+        cookie = data.downloadAuthCookie[0]
+        kwargs = {
+                'url': data.gzippedDownloadUrl if gzipped else data.downloadUrl,
+                'cookies': {
+                        cookie.name: cookie.value,
+                    }
+                }
+        return self.download(**kwargs)

@@ -1,6 +1,8 @@
 finsky
 ======
 
+|pypi|
+
 Google Play API
 
 Why the name?
@@ -17,3 +19,7 @@ Acknowledgments
 -  `gpsoauth <https://github.com/simon-weber/gpsoauth>`__
 -  Dima Kovalenko's `reverse engineering of
    EncryptedPasswd <http://codedigging.com/blog/2014-06-09-about-encryptedpasswd/>`__
+
+
+.. |pypi| image:: https://img.shields.io/pypi/v/finsky.svg
+   :target: https://pypi.python.org/pypi/finsky

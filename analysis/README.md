@@ -160,3 +160,17 @@ For download requests on the same phone:
 ```
 AndroidDownloadManager/4.4.4 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P)
 ```
+
+For OnePlus One:
+
+```
+Android-Finsky/5.6.8 (api=3,versionCode=80360800
+,sdk=21,device=A0001,hardware=bacon,product=baco
+n,platformVersionRelease=5.0.2,model=A0001,build
+Id=LRX22G,isWideScreen=0)
+```
+
+```
+AndroidDownloadManager/5.0.2 (Linux; U; Android 5.0.2; A0001
+Build/LRX22G)
+```

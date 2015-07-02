@@ -5,13 +5,28 @@ import protos.response_pb2
 
 BASE_URL = 'https://android.clients.google.com/fdfe/'
 CLIENT_ID = 'am-google'
+DEFAULT_DEVICE = {
+        'model': 'Nexus 5',
+        'build': 'KTU84P',
+        'android_version': '4.4.4',
+        }
 
 class Client(object):
-    def __init__(self, android_id, auth_token, language='en-US', **kwargs):
+    def __init__(self, android_id, auth_token, language='en-US', device={}, **kwargs):
         self.android_id = android_id
         self.auth_token = auth_token
         self.language = language
+        self.device = pydash.merge({}, DEFAULT_DEVICE, device)
         self.request_options_base = kwargs
+
+    def user_agent(self):
+        ua = 'Android-Finsky/5.6.8 '
+        ua += '(api=3,versionCode=80360800,sdk=19,device=hammerhead,'
+        ua += 'hardware=hammerhead,product=hammerhead,'
+        ua += 'platformVersionRelease=%s,' % (self.device['android_version'])
+        ua += 'model=%s,buildId=%s,isWideScreen=0)' % (
+                self.device['model'], self.device['build'])
+        return ua
 
     def request(self, endpoint, **kwargs):
         request_options_common = {
@@ -21,11 +36,7 @@ class Client(object):
                     'Authorization': 'GoogleLogin auth=' + self.auth_token,
                     'X-DFE-Device-Id': self.android_id,
                     'X-DFE-Client-Id': CLIENT_ID,
-                    'User-Agent': (
-                        'Android-Finsky/5.5.12 (api=3,versionCode=80351200,' +
-                        'sdk=18,device=x86,hardware=android_x86,' +
-                        'product=android_x86,platformVersionRelease=4.3,' +
-                        'model=VirtualBox,buildId=JSS15J,isWideScreen=0)'),
+                    'User-Agent': self.user_agent(),
                     },
                 'verify': False,
                 }
@@ -76,6 +87,13 @@ class Client(object):
                 }
         return self.delivery(**kwargs)
 
+    def download_user_agent(self):
+        ua = 'AndroidDownloadManager/%s ' % (self.device['android_version'])
+        ua += '(Linux; U; Android %s; %s Build/%s)' % (
+                self.device['android_version'], self.device['model'],
+                self.device['build'])
+        return ua
+
     def download(self, url, cookies):
         """
         Download file at the given URL with an authentication cookie specified
@@ -86,8 +104,7 @@ class Client(object):
         download_request_options = {
                 'url': url,
                 'headers': {
-                    'User-Agent': 'AndroidDownloadManager/4.4.4 ' +
-                        '(Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P)',
+                    'User-Agent': self.download_user_agent(),
                     'Accept-Encoding':  'identity',
                     },
                 'cookies': cookies,

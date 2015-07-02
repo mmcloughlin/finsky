@@ -177,9 +177,10 @@ Build/LRX22G)
 
 ## Request Verification
 
-Google seems to use the Keyczar library's mechainism for verifying requests.
-They keep public keys under `assets/keys` in the APK. It appears that the one
-we need is `dfe-response-auth` containing the data
+Google seems to use the [Keyczar](http://www.keyczar.org/) library's
+mechainism for verifying requests.  They keep public keys under `assets/keys`
+in the APK. It appears that the one we need is `dfe-response-auth` containing
+the data
 
 ```
 {
@@ -196,3 +197,6 @@ not
 impossible](http://security.stackexchange.com/questions/40885/public-key-%E2%86%92-certificate).
 We can probably use a [Python script](https://gist.github.com/ril3y/1165038)
 to generate a self-signed certificate wrapping their public key.
+
+It also looks like Keyczar has a python library, so we may just be able to use
+that.

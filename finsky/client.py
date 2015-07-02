@@ -11,8 +11,10 @@ DEFAULT_DEVICE = {
         'android_version': '4.4.4',
         }
 
+
 class Client(object):
-    def __init__(self, android_id, auth_token, language='en-US', device={}, **kwargs):
+    def __init__(self, android_id, auth_token, language='en-US', device={},
+                 **kwargs):
         self.android_id = android_id
         self.auth_token = auth_token
         self.language = language
@@ -41,10 +43,10 @@ class Client(object):
                 'verify': False,
                 }
         options = pydash.merge({},
-                self.request_options_base,
-                request_options_common,
-                kwargs,
-                )
+                               self.request_options_base,
+                               request_options_common,
+                               kwargs,
+                               )
         r = requests.get(**options)
         r.raise_for_status()
         data = r.content
@@ -53,23 +55,23 @@ class Client(object):
 
     def details(self, doc):
         message = self.request('details',
-                params={
-                    'doc': doc,
-                    },
-                headers={
-                    'X-DFE-No-Prefetch': 'true',
-                    })
+                               params={
+                                   'doc': doc,
+                                   },
+                               headers={
+                                   'X-DFE-No-Prefetch': 'true',
+                                   })
         return message.payload.detailsResponse
 
     def delivery(self, doc, version_code, certificate_hash, offer_type):
         message = self.request('delivery',
-                params={
-                    'doc': doc,
-                    'vc': version_code,
-                    'ot': offer_type,
-                    'ch': certificate_hash,
-                    },
-                )
+                               params={
+                                   'doc': doc,
+                                   'vc': version_code,
+                                   'ot': offer_type,
+                                   'ch': certificate_hash,
+                                   },
+                               )
         return message.payload.deliveryResponse
 
     def delivery_from_details(self, details_response):
@@ -78,11 +80,11 @@ class Client(object):
         request.
         """
         doc = details_response.docV2
+        ch = doc.details.appDetails.certificateSet[0].certificateHash[0]
         kwargs = {
                 'doc': doc.docid,
                 'version_code': doc.details.appDetails.versionCode,
-                'certificate_hash':
-                    doc.details.appDetails.certificateSet[0].certificateHash[0],
+                'certificate_hash': ch,
                 'offer_type': doc.offer[0].offerType,
                 }
         return self.delivery(**kwargs)
@@ -111,9 +113,9 @@ class Client(object):
                 'verify': False,
                 }
         options = pydash.merge({},
-                self.request_options_base,
-                download_request_options,
-                )
+                               self.request_options_base,
+                               download_request_options,
+                               )
         r = requests.get(**options)
         r.raise_for_status()
         return r.content
@@ -123,9 +125,10 @@ class Client(object):
         Perform a download given a response from the delivery request.
         """
         data = delivery_response.appDeliveryData
+        url = data.gzippedDownloadUrl if gzipped else data.downloadUrl
         cookie = data.downloadAuthCookie[0]
         kwargs = {
-                'url': data.gzippedDownloadUrl if gzipped else data.downloadUrl,
+                'url': url,
                 'cookies': {
                         cookie.name: cookie.value,
                     }

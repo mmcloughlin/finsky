@@ -3,6 +3,10 @@ import pydash
 
 import protos.response_pb2
 
+# disable InsecureRequestWarning when using verify=False
+# https://github.com/kennethreitz/requests/issues/2214
+requests.packages.urllib3.disable_warnings()
+
 BASE_URL = 'https://android.clients.google.com/fdfe/'
 CLIENT_ID = 'am-google'
 DEFAULT_DEVICE = {

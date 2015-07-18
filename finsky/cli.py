@@ -20,7 +20,6 @@ parser_download.add_argument('--out', action='store',
 
 def download(args):
     profile = yaml.load(args.profile)
-    print profile
     client = finsky.client.Client(**profile)
     details = client.details(args.doc)
     delivery = client.delivery_from_details(details)

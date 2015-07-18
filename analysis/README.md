@@ -160,3 +160,43 @@ For download requests on the same phone:
 ```
 AndroidDownloadManager/4.4.4 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P)
 ```
+
+For OnePlus One:
+
+```
+Android-Finsky/5.6.8 (api=3,versionCode=80360800
+,sdk=21,device=A0001,hardware=bacon,product=baco
+n,platformVersionRelease=5.0.2,model=A0001,build
+Id=LRX22G,isWideScreen=0)
+```
+
+```
+AndroidDownloadManager/5.0.2 (Linux; U; Android 5.0.2; A0001
+Build/LRX22G)
+```
+
+## Request Verification
+
+Google seems to use the [Keyczar](http://www.keyczar.org/) library's
+mechainism for verifying requests.  They keep public keys under `assets/keys`
+in the APK. It appears that the one we need is `dfe-response-auth` containing
+the data
+
+```
+{
+    "modulus": "ANCOib7-L6cJAoxJrI18TLN8M42a-cdbM2OwpTz1LZMiA97QANrqyfhRusoumwwrU_WIv_2JNVFEEMoNNRxXvpOLukvr3E-5OyW2EDfMK6ZpiDbJi1EBbUJElTDdm9uP5K0bZg-08QxsNfiXmuG0ipzAeNdlxpI3US-1pzEBS8_1xtXK5VqZlCW0nYDDsJP_GWmeiXoRk1tqAJe7gqmrY9pcyuGbmPzuS4mzJMTPu7NK90nStgNXkt5YdW-jzaJXyXOGLWQmcFxTa3k_RKrX-ISJThZTMGBMSX46ikAnDIl7kyng2z0tU1Tcb2Ie4Q8keeBhJ-ConcCGSei-mKkOXs8",
+    "padding": "OAEP",
+    "publicExponent": "AQAB",
+    "size": 2048
+}
+```
+
+We may be able to get this to work through Python if we can wrap this public
+key in a certificate. Some searching online suggests this is [difficult but
+not
+impossible](http://security.stackexchange.com/questions/40885/public-key-%E2%86%92-certificate).
+We can probably use a [Python script](https://gist.github.com/ril3y/1165038)
+to generate a self-signed certificate wrapping their public key.
+
+It also looks like Keyczar has a python library, so we may just be able to use
+that.

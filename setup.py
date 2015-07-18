@@ -16,9 +16,15 @@ setup(name='finsky',
       author_email='mmcloughlin@gmail.com',
       license='MIT',
       packages=['finsky'],
+      entry_points={
+          'console_scripts': [
+              'finsky = finsky.cli:main',
+              ]
+          },
       install_requires=[
           'requests',
           'pydash',
           'protobuf',
+          'pyyaml',
           ],
       )

@@ -33,7 +33,7 @@ Then for example, you can download snapchat with
 
 Note ``com.snapchat.android`` is the app ID you'll see when you `browse to
 snapchat on the play store
-<https://play.google.com/store/apps/details?id=com.snapchat.android&hl=en>`.
+<https://play.google.com/store/apps/details?id=com.snapchat.android&hl=en>`__.
 
 Why the name?
 -------------

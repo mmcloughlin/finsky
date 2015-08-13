@@ -15,7 +15,7 @@ setup(name='finsky',
       author='Michael McLoughlin',
       author_email='mmcloughlin@gmail.com',
       license='MIT',
-      packages=['finsky'],
+      packages=['finsky', 'finsky.protos'],
       entry_points={
           'console_scripts': [
               'finsky = finsky.cli:main',

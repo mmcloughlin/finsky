@@ -1,7 +1,7 @@
 import requests
 import pydash
 
-import protos.response_pb2
+import finsky.protos.response_pb2
 
 # disable InsecureRequestWarning when using verify=False
 # https://github.com/kennethreitz/requests/issues/2214

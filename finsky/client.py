@@ -54,7 +54,7 @@ class Client(object):
         r = requests.get(**options)
         r.raise_for_status()
         data = r.content
-        message = protos.response_pb2.ResponseWrapper.FromString(data)
+        message = finsky.protos.response_pb2.ResponseWrapper.FromString(data)
         return message
 
     def details(self, doc):

@@ -51,7 +51,7 @@ Acknowledgments
 -  `django-googleplay-api <https://github.com/gotlium/django-googleplay-api>`__
 -  `gpsoauth <https://github.com/simon-weber/gpsoauth>`__
 -  Dima Kovalenko's `reverse engineering of
-   EncryptedPasswd <http://codedigging.com/blog/2014-06-09-about-encryptedpasswd/>`__
+   EncryptedPasswd <https://kov4l3nko.github.io/blog/2014-06-09-about-encryptedpasswd/>`__
 
 
 .. |pypi| image:: https://img.shields.io/pypi/v/finsky.svg?style=flat-square

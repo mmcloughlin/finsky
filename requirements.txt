@@ -1,4 +1,4 @@
-PyYAML==3.11
+PyYAML==5.1
 protobuf==3.0.0a3
 pydash==3.2.2
 requests==2.7.0

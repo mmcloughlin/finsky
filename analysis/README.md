@@ -68,11 +68,11 @@ Parameters:
 | Param | Required | Meaning |
 |-------|----------|---------|
 | `doc` | Yes      | App ID |
-| `vc`  | Yes      | Version code (from `details` request) |
+| `vc`  | Yes      | Version code or Version code to update to if bvc param is used (from `details` request) |
 | `ot`  | Yes      | Offer type (set to `1`) |
 | `ch`  | No       | Certificate Hash (from `details` request) |
 | `st`  | No       | *Unknown* (some kind of token) |
-| `bvc` | No       | *Unknown* (looks like another version code) |
+| `bvc` | No       | Current installed version code (from `details` request) |
 | `pf`  | No       | *Unknown* (related to `bvc`, can appear multiple times) |
 
 Java code:
